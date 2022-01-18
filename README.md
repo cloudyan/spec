@@ -141,3 +141,4 @@
 - [前端开发规范手册](https://github.com/0xashu/Guide.git)
 - [naming-cheatsheet](https://github.com/kettanaito/naming-cheatsheet.git)
 - [O2前端规范文档](https://github.com/o2team/guide)
+- [阿里前端开发规范](https://w3ctim.com/post/1d821dd8.html)
