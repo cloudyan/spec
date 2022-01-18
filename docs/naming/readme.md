@@ -2,7 +2,7 @@
 
 在编程工作中，命名是一件让很多开发者都头疼的事情。国外曾经有个一次关于程序员最难任务的投票调查，结果命名占了 49%。
 
-![paogrammers-hardest-tasks](../img/paogrammers-hardest-tasks.webp)
+![paogrammers-hardest-tasks](../assets/paogrammers-hardest-tasks.webp)
 
 一个好的变量或函数命名，应该能起到自解释的作用，甚至能减少我们代码的注释。
 
@@ -144,7 +144,7 @@ return <Button disabled={isDisabled} />
 
 There is a useful pattern to follow when naming functions:
 
-```
+```md
 prefix? + action (A) + high context (HC) + low context? (LC)
 ```
 

@@ -183,10 +183,10 @@ RSCSS 与其他 CSS 模块组织系统相似的概念
 
 | RSCSS | BEM | SMACSS |
 | -- | -- | -- |
-| Component	| Block | Module |
-| Element	| Element |	? |
-| Layout	| ?	| Layout |
-| Variant	| Modifier | Theme & State |
+| Component | Block | Module |
+| Element | Element | ? |
+| Layout | ? | Layout |
+| Variant | Modifier | Theme & State |
 
 #### Summary （总结）
 

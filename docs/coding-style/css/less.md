@@ -9,7 +9,7 @@
 3. 样式声明
 
 ```css
-@import "mixins/size.less";
+@import 'mixins/size.less';
 
 @default-text-color: #333;
 
@@ -21,16 +21,16 @@
 
 #### @import 语句
 
-@import 语句引用的文需要写在一对引号内，.less 后缀不得省略。引号使用 `'` 和 `"` 均可，但在同一项目内需统一。
+@import 语句引用的文需要写在一对引号内，.less 后缀不得省略。引号使用 `'` 和 `'` 均可，但在同一项目内需统一。
 
 ```css
 /* Not recommended */
-@import "mixins/size";
+@import 'mixins/size';
 @import 'mixins/grid.less';
 
 /* Recommended */
-@import "mixins/size.less";
-@import "mixins/grid.less";
+@import 'mixins/size.less';
+@import 'mixins/grid.less';
 ```
 
 #### 混入（Mixin）
@@ -69,7 +69,7 @@ h3 {
 
 变量可以用类似ruby和php的方式嵌入到字符串中，像@{name}这样的结构:
 
-`@base-url: "http://assets.fnord.com";`
-`background-image: url("@{base-url}/images/bg.png");`
+`@base-url: 'http://assets.fnord.com';`
+`background-image: url('@{base-url}/images/bg.png');`
 
 
