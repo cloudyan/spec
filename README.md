@@ -6,7 +6,8 @@
   - [快速上手](#快速上手)
   - [规范](#规范)
     - [编辑器](#编辑器)
-    - [文件规范](#文件规范)
+    - [文件目录](#文件目录)
+    - [资源目录](#资源目录)
     - [命名规范](#命名规范)
     - [编码规范](#编码规范)
     - [书写规范/代码格式检查](#书写规范代码格式检查)
@@ -46,9 +47,23 @@
 - [x] [editorconfig](./docs/editor/editorconfig.md)
 - [ ] [vscode 配置](./docs/editor/vscode.md)
 
-### 文件规范
+### 文件目录
 
-代码文件统一使用 **无BOM头的utf-8**(utf-8 without BOM) 的编码方式
+- 代码文件统一使用 **无BOM头的utf-8**(utf-8 without BOM) 的编码方式
+
+### 资源目录
+
+静态资源 assets
+
+```bash
+.
+├── src
+│   ├── assets
+│   │   ├── img
+│   │   └── svg
+│   └── pages
+└── package.json
+```
 
 ### 命名规范
 
@@ -58,13 +73,18 @@
 - PascalCase
 - snake_case
 
-详细
+命名规则
 
 - [ ] [naming 概述](./docs/naming/readme.md)
-- [ ] 应用
-  - 变量命名
-  - 文件夹命名
+- 分类
+  - JS命名
+    - 变量,方法,参数 camelCase
+    - 类   PascalCase
+    - 常量 全部字母大写，单词间下划线 `_` 分隔
   - css 命名
+    - BEM
+  - 文件夹命名
+    - 全部小写, 单词间下划线 `-` 分隔
   - url pathname 路径命名
   - url query 参数命名
 
