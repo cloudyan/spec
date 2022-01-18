@@ -86,3 +86,4 @@
 ## 参考
 
 - [前端开发规范手册](https://github.com/0xashu/Guide.git)
+- [naming-cheatsheet](https://github.com/kettanaito/naming-cheatsheet.git)
