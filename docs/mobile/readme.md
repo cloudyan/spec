@@ -1,33 +1,65 @@
 # 移动端开发
 
+这里汇总了**移动端开发常见的坑**, 并给出**坑产生的原理**以及**现阶段常规的填坑方案**.
+
 ## 问题汇总
 
-- 1px 问题，产生原因
-- 移动端响应式布局实现方案
-- iOS 滑动不流畅, 快速回弹滚动
-- iOS 上拉边界下拉出现白色空白
-- 页面件放大或缩小不确定性行为
 - click 点击穿透与延迟
-  - https://developers.google.com/web/updates/2013/12/300ms-tap-delay-gone-away
-  - https://webkit.org/blog/5610/more-responsive-tapping-on-ios/
+  - <https://developers.google.com/web/updates/2013/12/300ms-tap-delay-gone-away>
+  - <https://webkit.org/blog/5610/more-responsive-tapping-on-ios/>
   - [5 Ways to Prevent the 300ms Click Delay on Mobile Devices](https://www.sitepoint.com/5-ways-prevent-300ms-click-delay-mobile-devices/)
-- 软键盘弹出将页面顶起来、收起未回落问题
-- iPhone X 底部栏适配问题
-- 保存页面为图片和二维码问题和解决方案
-- 微信公众号 H5 分享问题
-- H5 调用 SDK 相关问题及解决方案
 - H5 调试相关方案与策略
 - iOS 短信验证码重复输入问题
 - iOS 日期格式转换问题
-- rem vs vw 方案
+- iframe 跨域解决方案
+- 空白屏监控方案
+
+相关问题分类
+
+- 踩坑
+  - iOS
+    - 滚动不流畅
+    - 缩放不确定性
+    - click 延迟与穿透
+    - 上拉下来空白
+    - iPhoneX 适配
+    - iOS 产品上架审核问题
+  - iOS & Android
+    - 键盘顶起来, 不回滚
+    - 1px 问题
+      - 物理像素 vs 逻辑像素
+    - 响应式布局
+      - rem vs vw
+  - 微信
+    - 公众号分享
+    - 保存页面为二维码/图片
+  - DSBridge vs WebViewJavascriptBridge
 
 ## 菜单
 
 - [移动端开发](#移动端开发)
   - [问题汇总](#问题汇总)
   - [菜单](#菜单)
-    - [click 的 300ms 延迟响应](#click-的-300ms-延迟响应)
+    - [1px 问题](#1px-问题)
+    - [响应式布局](#响应式布局)
+    - [iOS 滚动不流畅](#ios-滚动不流畅)
     - [快速回弹滚动](#快速回弹滚动)
+    - [iOS 上拉边界下拉出现白色空白](#ios-上拉边界下拉出现白色空白)
+      - [监听事件禁止滑动](#监听事件禁止滑动)
+      - [滚动妥协填充空白，装饰成其他功能](#滚动妥协填充空白装饰成其他功能)
+    - [页面放大或缩小不确定性行为](#页面放大或缩小不确定性行为)
+    - [click 点击事件延时与穿透](#click-点击事件延时与穿透)
+      - [使用 touchstart 替换 click](#使用-touchstart-替换-click)
+      - [使用 fastclick 库(推荐)](#使用-fastclick-库推荐)
+    - [click 的 300ms 延迟响应](#click-的-300ms-延迟响应)
+    - [软键盘将页面顶起来、收起未回落问题](#软键盘将页面顶起来收起未回落问题)
+    - [iPhone X系列安全区域适配问题](#iphone-x系列安全区域适配问题)
+    - [页面生成为图片和二维码问题](#页面生成为图片和二维码问题)
+      - [生成二维码](#生成二维码)
+      - [生成图片](#生成图片)
+    - [微信公众号分享问题](#微信公众号分享问题)
+    - [H5 调用 SDK 相关解决方案](#h5-调用-sdk-相关解决方案)
+    - [H5 调试相关方案策略](#h5-调试相关方案策略)
     - [设备检测](#设备检测)
     - [获取滚动条值](#获取滚动条值)
     - [清除输入框内阴影](#清除输入框内阴影)
@@ -39,21 +71,27 @@
 
 ---
 
-### click 的 300ms 延迟响应
+### 1px 问题
 
-click 的 300ms 延迟是由双击缩放(double tap to zoom)所导致的，由于用户可以进行双击缩放或者双击滚动的操作，当用户一次点击屏幕之后，浏览器并不能立刻判断用户是确实要打开这个链接，还是想要进行双击操作。因此，移动端浏览器就等待 300 毫秒，以判断用户是否再次点击了屏幕。
+移动端 1px，说 1px 不够准确，应该说成 1 物理像素。
 
-随着响应式网页逐渐增多，用户使用双击缩放机会减少，这 300ms 的延迟就更不可接受了。浏览器开发商也随之提供相应的解决方案。这些方案在[5 Ways to Prevent the 300ms Click Delay on Mobile Devices](http://www.sitepoint.com/5-ways-prevent-300ms-click-delay-mobile-devices/) 中，被提及的包括「禁用缩放」和「width=device-width」等方案，但这些方案并不完美，需要针对某些版本浏览器，又或仅在 Android 的浏览器上使用。
+关于此问题及产生原因, 解决方案, 下文已讲解已经比较详尽
 
-所以这时候就需要一个更简单通用的解决方案，其中 [FT Labs](http://labs.ft.com/) 专门为解决移动端浏览器 300 毫秒点击延迟问题所开发的一个轻量级的库 [FastClick](https://github.com/ftlabs/fastclick) 就是很好的选择。FastClick 在检测到 touchend 事件的时候，会通过 DOM 自定义事件立即触发一个模拟 click 事件，并把浏览器在 300 毫秒之后真正触发的 click 事件阻止掉。
+参考:
 
-FastClick 的使用方法非常简单，在 window load 事件之后，在 `<body>` 上调用`FastClick.attach()` 即可。
+- [吃透移动端 1px｜从基本原理到开源解决方案](https://juejin.cn/post/6844904023145857038)
 
-```js
-window.addEventListener('load', function() {
-  FastClick.attach(document.body);
-}, false);
-```
+### 响应式布局
+
+关于响应式布局, 使用 rem vs vw 的方案, 下面的文章介绍的比较全面了.
+
+参考:
+
+- [吃透移动端 H5 响应式布局 ｜深入原理到目前最佳实践方案](https://juejin.cn/post/6844904021552005128)
+
+### iOS 滚动不流畅
+
+- https://juejin.cn/post/6844904024790007815
 
 ### 快速回弹滚动
 
@@ -74,6 +112,86 @@ window.addEventListener('load', function() {
 ```
 
 除了 iScroll 之外，还有一个更加强大的滚动插件 [Swiper](http://www.idangero.us/swiper/#.VfaVk52qqko)，支持 3D 和内置滚动条等。
+
+### iOS 上拉边界下拉出现白色空白
+
+- https://juejin.cn/post/6844904024790007815
+
+#### 监听事件禁止滑动
+
+
+#### 滚动妥协填充空白，装饰成其他功能
+
+### 页面放大或缩小不确定性行为
+
+- https://juejin.cn/post/6844904024790007815
+
+### click 点击事件延时与穿透
+
+#### 使用 touchstart 替换 click
+
+#### 使用 fastclick 库(推荐)
+
+[fastclick源码](https://github.com/ftlabs/fastclick/blob/main/lib/fastclick.js) 核心代码不长, 1000 行不到。有兴趣可以了解一下!
+
+### click 的 300ms 延迟响应
+
+click 的 300ms 延迟是由双击缩放(double tap to zoom)所导致的，由于用户可以进行双击缩放或者双击滚动的操作，当用户一次点击屏幕之后，浏览器并不能立刻判断用户是确实要打开这个链接，还是想要进行双击操作。因此，移动端浏览器就等待 300 毫秒，以判断用户是否再次点击了屏幕。
+
+随着响应式网页逐渐增多，用户使用双击缩放机会减少，这 300ms 的延迟就更不可接受了。浏览器开发商也随之提供相应的解决方案。这些方案在[5 Ways to Prevent the 300ms Click Delay on Mobile Devices](http://www.sitepoint.com/5-ways-prevent-300ms-click-delay-mobile-devices/) 中，被提及的包括「禁用缩放」和「width=device-width」等方案，但这些方案并不完美，需要针对某些版本浏览器，又或仅在 Android 的浏览器上使用。
+
+所以这时候就需要一个更简单通用的解决方案，其中 [FT Labs](http://labs.ft.com/) 专门为解决移动端浏览器 300 毫秒点击延迟问题所开发的一个轻量级的库 [FastClick](https://github.com/ftlabs/fastclick) 就是很好的选择。FastClick 在检测到 touchend 事件的时候，会通过 DOM 自定义事件立即触发一个模拟 click 事件，并把浏览器在 300 毫秒之后真正触发的 click 事件阻止掉。
+
+FastClick 的使用方法非常简单，在 window load 事件之后，在 `<body>` 上调用`FastClick.attach()` 即可。
+
+```js
+window.addEventListener('load', function() {
+  FastClick.attach(document.body);
+}, false);
+```
+
+
+### 软键盘将页面顶起来、收起未回落问题
+
+### iPhone X系列安全区域适配问题
+
+### 页面生成为图片和二维码问题
+
+#### 生成二维码
+
+可以使用 `qrcode` 库
+
+- [qrcode 源码](https://github.com/davidshimjs/qrcodejs)
+
+#### 生成图片
+
+主要是使用 `htmlToCanvas` 生成 `canvas` 画布. 但由于是 `canvas` 的原因。移动端生成出来的图片比较模糊。
+
+可以生成 2 倍图, 放入一倍容器中来实现更清晰的效果.
+
+- [html2convas 源码](https://github.com/niklasvh/html2canvas)
+
+### 微信公众号分享问题
+
+解决方法：添加一层蒙层，做分享引导。
+
+### H5 调用 SDK 相关解决方案
+
+可以使用 `DSBridge` 同时支持 iOS 和 Android.
+
+扩展
+
+- [DSBridge 与 JSBridge 的区别](https://juejin.cn/post/6844903871823904781)
+- [DSBridge-Android](https://github.com/wendux/DSBridge-Android) & [DSBridge-iOS](https://github.com/wendux/DSBridge-IOS)
+
+### H5 调试相关方案策略
+
+调试代码一般就是为了查看数据和定位 bug。分为两种场景，一种是开发和测试时调试，一种是生产环境上调试。
+
+> 为什么有生产环境上调试呢？有些时候测试环境上没法复现这个 bug，测试环境和生产环境不一致，此时就需要紧急生产调试。
+
+- vConsole
+- 代理 + spy-debugger
 
 ### 设备检测
 
@@ -178,4 +296,5 @@ iOS Safari ( Android 或其他浏览器不会) 会自动识别看起来像电话
 
 参考:
 
-- https://zhuanlan.zhihu.com/p/268677938
+- [吃透移动端 H5 响应式布局 ｜深入原理到目前最佳实践方案](https://juejin.cn/post/6844904021552005128)
+- [吃透移动端 H5 与 Hybrid | 实践踩坑12种问题汇总](https://juejin.cn/post/6844904024790007815)
