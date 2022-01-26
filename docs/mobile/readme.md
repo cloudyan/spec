@@ -60,6 +60,7 @@
     - [微信公众号分享问题](#微信公众号分享问题)
     - [H5 调用 SDK 相关解决方案](#h5-调用-sdk-相关解决方案)
     - [H5 调试相关方案策略](#h5-调试相关方案策略)
+    - [H5 唤起 APP](#h5-唤起-app)
     - [设备检测](#设备检测)
     - [获取滚动条值](#获取滚动条值)
     - [清除输入框内阴影](#清除输入框内阴影)
@@ -155,6 +156,21 @@ window.addEventListener('load', function() {
 
 ### iPhone X系列安全区域适配问题
 
+- `viewport-fit` iOS11 新增特性(默认: `contain`)
+  - 苹果公司为了适配 iPhoneX 对现有 viewport meta 标签的一个扩展
+  - `<meta name="viewport" content="width=device-width, viewport-fit=cover">`
+- 注意：env() 跟 constant() 需要同时存在，而且顺序不能换。
+
+```css
+padding-bottom: constant(safe-area-inset-bottom); /* 兼容 iOS < 11.2 */
+padding-bottom: env(safe-area-inset-bottom); /* 兼容 iOS >= 11.2 */
+```
+
+参考:
+
+- https://jelly.jd.com/article/6006b1055b6c6a01506c87fd
+- 出处: https://webkit.org/blog/7929/designing-websites-for-iphone-x/
+
 ### 页面生成为图片和二维码问题
 
 #### 生成二维码
@@ -192,6 +208,12 @@ window.addEventListener('load', function() {
 
 - vConsole
 - 代理 + spy-debugger
+
+### H5 唤起 APP
+
+这里推荐一篇高质量总结, 非常全面
+
+- [H5唤起APP指南](https://suanmei.github.io/2018/08/23/h5_call_app/)
 
 ### 设备检测
 
