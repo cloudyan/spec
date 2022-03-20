@@ -53,6 +53,10 @@
       - [使用 fastclick 库(推荐)](#使用-fastclick-库推荐)
     - [click 的 300ms 延迟响应](#click-的-300ms-延迟响应)
     - [软键盘将页面顶起来、收起未回落问题](#软键盘将页面顶起来收起未回落问题)
+    - [iOS 中 position:fixed 的兼容性问题](#ios-中-positionfixed-的兼容性问题)
+    - [iOS 中 position:fixed 吸底时滑动出现抖动](#ios-中-positionfixed-吸底时滑动出现抖动)
+    - [fixed 与 input](#fixed-与-input)
+    - [input 的 compositionstart 和 compositionend 事件](#input-的-compositionstart-和-compositionend-事件)
     - [iPhone X系列安全区域适配问题](#iphone-x系列安全区域适配问题)
     - [页面生成为图片和二维码问题](#页面生成为图片和二维码问题)
       - [生成二维码](#生成二维码)
@@ -81,6 +85,15 @@
 参考:
 
 - [吃透移动端 1px｜从基本原理到开源解决方案](https://juejin.cn/post/6844904023145857038)
+
+方案
+
+- 0.5px border
+  - 从iOS 8开始，iOS 浏览器支持 0.5px 的 border，但是在 Android 上是不支持的，0.5px 会被认为是 0px，所以这种方法，兼容性是很差的。
+- 背景渐变
+  - `background-image:linear-gradient(180deg, $border-color, $border-color 50%, transparent 50%),`
+  - 没有办法实现圆角
+- 伪类 + transform 缩放
 
 ### 响应式布局
 
@@ -153,6 +166,64 @@ window.addEventListener('load', function() {
 
 
 ### 软键盘将页面顶起来、收起未回落问题
+
+
+
+### iOS 中 position:fixed 的兼容性问题
+
+- [谈一谈苹果手机关于position:fixed的兼容性](https://juejin.cn/post/6844903951855271949)
+- https://hehuiyun.github.io/2019/02/19/%E8%A7%A3%E5%86%B3position-fixed%E5%9C%A8ios%E7%B3%BB%E7%BB%9F%E5%A4%B1%E6%95%88%E7%9A%84%E9%97%AE%E9%A2%98/
+- https://www.cnblogs.com/xiahj/p/8036419.html
+
+### iOS 中 position:fixed 吸底时滑动出现抖动
+
+- https://blog.csdn.net/sinat_22209293/article/details/80854509
+- https://www.cnblogs.com/xuniannian/p/8722393.html
+
+### fixed 与 input
+
+不要在有 input 标签的页面使用 fixed 定位，因为这两者在一起的时候，总是会有奇奇怪怪的问题。
+
+在 iOS 上，当点击 input 标签获取焦点唤起软键盘的时候，fixed 定位会暂时失效，或者可以理解为变成了 absolute 定位，在含有滚动的页面，fixed 定位的节点和其他节点一起滚动。
+
+但是除此之外，还有很多坑比较难以解决，例如 Android 软键盘唤起后遮挡住 input 标签，用户没法看到自己输入的字符串，iOS 则需要在输入至少一个字符之后，才能将对应的 input 标签滚动到合适的位置，所以为了避开这些难以解决的坑，在有表单输入的页面，尽量用absolute 或者 flex 替换 fixed。
+
+- https://juejin.cn/post/6844903473092231182
+
+### input 的 compositionstart 和 compositionend 事件
+
+在 iOS 中，input 事件会截断非直接输入，什么是非直接输入呢，在我们输入汉字的时候，比如说「喜茶」，中间过程中会输入拼音，每次输入一个字母都会触发 input 事件，然而在没有点选候选字或者点击「选定」按钮前，都属于非直接输入。
+
+我们希望在直接输入之后才触发 input 事件，这就需要引出我要说的两个事件—— compositionstart 和 compositionend。
+compositionstart 事件在用户开始进行非直接输入的时候触发，而在非直接输入结束，也即用户点选候选词或者点击「选定」按钮之后，会触发 compositionend 事件。
+
+```js
+var inputLock = false;
+function do(inputElement) {
+  var regex = /[^1-9a-zA-Z]/g;
+  inputElement.value = inputElement.value.replace(regex, '');
+}
+
+inputElement.addEventListener('compositionstart', function() {
+  inputLock = true;
+});
+
+
+inputElement.addEventListener('compositionend', function(event) {
+  inputLock = false;
+  do(event.target);
+})
+
+
+inputElement.addEventListener('input', function(event) {
+  if (!inputLock) {
+    do(event.target);
+    event.returnValue = false;
+  }
+});
+```
+
+这里需要注意的一点是，compositionend 事件是在 input 事件后触发的，所以在 compositionend事件触发时，也要调用 input 事件处理逻辑。
 
 ### iPhone X系列安全区域适配问题
 
