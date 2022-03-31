@@ -1,5 +1,13 @@
 # ESLint
 
+- react
+  - react
+  - react
+  - taro
+- vue
+  - vue
+  - uniapp
+
 ## 使用注释
 
 参看 https://mysticatea.github.io/eslint-plugin-eslint-comments/
