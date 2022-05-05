@@ -5,12 +5,14 @@ specifiers:
   '@commitlint/config-conventional': ^16.2.1
   '@commitlint/prompt-cli': ^16.2.3
   husky: ^7.0.0
+  prettier: ^2.6.2
 
 devDependencies:
   '@commitlint/cli': 16.2.3
   '@commitlint/config-conventional': 16.2.1
   '@commitlint/prompt-cli': 16.2.3
   husky: 7.0.4
+  prettier: 2.6.2
 
 packages:
 
@@ -1020,6 +1022,12 @@ packages:
   /path-type/4.0.0:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
     engines: {node: '>=8'}
+    dev: true
+
+  /prettier/2.6.2:
+    resolution: {integrity: sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
     dev: true
 
   /punycode/2.1.1:
