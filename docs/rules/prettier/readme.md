@@ -95,7 +95,7 @@ module.exports = {
 module.exports = {
   // 不要试图将 printWidth 当作 ESLint 的[max-len](https://eslint.org/docs/rules/max-len) 来使用——它们不一样
   // max-len 只是说明允许的最大行长度是多少，而不是通常首选的长度是多少——这是 printWidth 指定的。
-  printWidth: 80,
+  printWidth: 80, // TIP: 120
   // 每个制表符占用的空格数
   tabWidth: 2,
   useTabs: false,
