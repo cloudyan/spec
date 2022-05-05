@@ -1,3 +1,5 @@
+<!-- @format -->
+
 # spec
 
 这是一份前端开发规范。
@@ -86,7 +88,7 @@
 
 #### 代码文件
 
-- 代码文件统一使用 **无BOM头的utf-8**(utf-8 without BOM) 的编码方式
+- 代码文件统一使用 **无 BOM 头的 utf-8**(utf-8 without BOM) 的编码方式
 
 #### 项目目录
 
@@ -128,10 +130,10 @@
 
 - [naming 概述](./docs/naming/readme.md)
 - 分类
-  - JS命名
+  - JS 命名
     - 变量, 方法, 参数 格式:`camelCase`
-    - 类   `PascalCase`
-    - 常量  全部字母大写，单词间下划线 `_` 分隔
+    - 类 `PascalCase`
+    - 常量 全部字母大写，单词间下划线 `_` 分隔
   - css 命名
     - BEM 命名法
   - 文件&文件夹命名
@@ -181,7 +183,7 @@
 
 - 重构能改善软件设计
 - 重构使软件更易理解
-- 重构有助于找到Bug
+- 重构有助于找到 Bug
 - 重构有助于提高自我编程能力
 - 重构有助于加深理解代码
 - 重构能适应需求变更
@@ -220,19 +222,19 @@
 - [Amazeui Style Guide](http://amazeui.org/getting-started/)
 - [CSS Guidelines](http://cssguidelin.es/)
 - [20 Snippets You should be using from Html5 Boilerplate](http://www.1stwebdesigner.com/snippets-html5-boilerplate/)
-- [谈谈CSS性能](http://www.w3.org/2015/Talks/0109-CSSConf-xq/)
-- [Web动画性能指南](http://alexorz.github.io/animation-performance-guide/)
+- [谈谈 CSS 性能](http://www.w3.org/2015/Talks/0109-CSSConf-xq/)
+- [Web 动画性能指南](http://alexorz.github.io/animation-performance-guide/)
 - [Why Moving Elements With Translate() Is Better Than Pos:abs Top/left](http://www.paulirish.com/2012/- why-moving-elements-with-translate-is-better-than-posabs-topleft/)
 - [High Performance Animations](http://www.html5rocks.com/zh/tutorials/speed/high-performance-animations/)
 - [jQuery Standards](http://lab.abhinayrathore.com/jquery-standards/)
 - [Learn jQuery](http://learn.jquery.com/about-jquery/)
-- [无线Web开发经验谈](http://am-team.github.io/amg/dev-exp-doc.html)
+- [无线 Web 开发经验谈](http://am-team.github.io/amg/dev-exp-doc.html)
 - [移动端前端笔记大全](http://segmentfault.com/a/1190000002581619)
 
 ### 参考
 
 - [前端开发规范手册](https://github.com/0xashu/Guide.git)
 - [naming-cheatsheet](https://github.com/kettanaito/naming-cheatsheet.git)
-- [O2前端规范文档](https://github.com/o2team/guide)
+- [O2 前端规范文档](https://github.com/o2team/guide)
 - [阿里前端开发规范](https://w3ctim.com/post/1d821dd8.html)
 - [重构](https://book.douban.com/subject/4262627/)

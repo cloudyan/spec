@@ -10,7 +10,7 @@
     "test": "echo test",
     "commitmsg": "validate-commit-msg",
     "commit": "npx git-cz ",
-    "format": "prettier -c --write 'src/**/*.{js,jsx,ts,tsx,less,md,json}' && git diff",
+    "format": "prettier -c --write '*.{js,jsx,ts,tsx,less,md,json}' && git diff",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
     "prepare": "husky install"
   },

@@ -1,9 +1,11 @@
 module.exports = {
+  // prettier-ignore
   extends: [
     '@commitlint/config-conventional',
   ],
   // https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html
   rules: {
+    // prettier-ignore
     'type-enum': [2, 'always', [
       'build',    // 构建过程变动
       'chore',    // 构建过程或辅助工具的变动(改变构建流程, 增加依赖库或工具等)
