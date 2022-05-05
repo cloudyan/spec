@@ -401,3 +401,4 @@ const friends = ['Bob', 'Tony', 'Tanya']
 
 - https://jishuin.proginn.com/p/763bfbd3b2af
 - https://jishuin.proginn.com/p/763bfbd3abaa
+- https://github.com/kettanaito/naming-cheatsheet

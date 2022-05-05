@@ -1,15 +1,13 @@
 # API 设计最佳实践
 
-- https://mp.weixin.qq.com/s/YgaYLyqCJQ-bXoA5F5ygxg
-
 任何API设计都遵循一种叫做“面向资源设计”的原则：
 
 - 资源：资源是数据的一部分，例如：用户
 - 集合：一组资源称为集合，例如：用户列表
 - URL：标识资源或集合的位置，例如：/user
 
-1. 对URL使用kebab-case（短横线小写隔开形式）`/system-orders`
-2. 参数使用camelCase（驼峰形式）`/system-orders/{orderId}`
+1. 对URL使用 `kebab-case`（短横线小写隔开形式）`/system-orders`
+2. 参数使用 `camelCase`（驼峰形式）`/system-orders/{orderId}`
 3. 指向集合的复数名称 `GET /users`
 4. URL以集合开始，以标识符结束 `GET /shops/:shopId/或GET /category/:categoryId`
    1. 保持概念的单一性和一致性
@@ -18,10 +16,10 @@
 6. 对非资源URL使用动词 `POST /alarm/245743/resend`
    1. 如果你有一个端点，它只返回一个操作。在这种情况下，你可以使用动词。例如，如果你想要向用户重新发送警报。
    2. 请记住，这些不是我们的CRUD操作。相反，它们被认为是在我们的系统中执行特定工作的函数。
-7. JSON属性使用camelCase驼峰形式
+7. JSON属性使用 `camelCase` 驼峰形式
    1. 如果你正在构建一个请求体或响应体为JSON的系统，那么属性名应该使用驼峰大小写。
 8. 监控
-   1. RESTful HTTP服务必须实现/health和/version和/metricsAPI端点。他们将提供以下信息。
+   1. RESTful HTTP服务必须实现 `/health` 和 `/version` 和 `/metricsAPI` 端点。他们将提供以下信息。
    2. /health 用200 OK状态码响应对/health的请求。
    3. /version 用版本号响应对/version的请求。
    4. /metrics 这个端点将提供各种指标，如平均响应时间。
@@ -48,3 +46,7 @@
     3. 简单胜于复杂。
     4. 字符串比数字好。
     5. 一致性比定制更好。
+
+参考文档
+
+- https://mp.weixin.qq.com/s/YgaYLyqCJQ-bXoA5F5ygxg
