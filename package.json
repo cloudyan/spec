@@ -1,5 +1,6 @@
 {
   "name": "@deepjs/spec",
+  "private": true,
   "version": "1.0.0",
   "description": "这是一份前端开发规范。",
   "keywords": [],
@@ -18,7 +19,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "alex": "alex .",
+    "alex": "npx alex .",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "eslint": "cross-env TIMING=1 eslint --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
     "eslint:fix": "npm run eslint -- --fix",

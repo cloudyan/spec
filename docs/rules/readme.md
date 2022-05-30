@@ -1,6 +1,6 @@
 # lint
 
-参见 lint example
+checkstyle 参见 lint example
 
 ## 进度
 
