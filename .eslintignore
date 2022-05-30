@@ -1,0 +1,12 @@
+dist/*
+node_modules/*
+build/*
+public/*
+target/*
+
+.history
+.DS_Store
+.dccache
+src/assets
+
+temp/*

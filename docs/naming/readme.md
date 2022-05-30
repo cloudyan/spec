@@ -46,12 +46,12 @@
 
 ```js
 /* Bad */
-const primerNombre = 'Gustavo'
-const amigos = ['Kate', 'John']
+const primerNombre = 'Gustavo';
+const amigos = ['Kate', 'John'];
 
 /* Good */
-const firstName = 'Gustavo'
-const friends = ['Kate', 'John']
+const firstName = 'Gustavo';
+const friends = ['Kate', 'John'];
 ```
 
 > 不管你喜不喜欢，英语都是编程中的主要语言，几乎所有的编程语言的语法都是用英语编写的，以及无数的文档和教材也是。通过英语编写代码，可以大大提高其通用性。对于我们国内开发者来说，一定要避免拼音甚至是直接的中文命名。
@@ -62,16 +62,16 @@ const friends = ['Kate', 'John']
 
 ```js
 /* Bad */
-const page_count = 5
-const shouldUpdate = true
+const page_count = 5;
+const shouldUpdate = true;
 
 /* Good */
-const pageCount = 5
-const shouldUpdate = true
+const pageCount = 5;
+const shouldUpdate = true;
 
 /* Good as well */
-const page_count = 5
-const should_update = true
+const page_count = 5;
+const should_update = true;
 ```
 
 ## SID 原则
@@ -84,14 +84,14 @@ const should_update = true
 
 ```js
 /* Bad */
-const a = 5 // "a" could mean anything
-const isPaginatable = a > 10 // "Paginatable" sounds extremely unnatural
-const shouldPaginatize = a > 10 // Made up verbs are so much fun!
+const a = 5; // "a" could mean anything
+const isPaginatable = a > 10; // "Paginatable" sounds extremely unnatural
+const shouldPaginatize = a > 10; // Made up verbs are so much fun!
 
 /* Good */
-const postCount = 5
-const hasPagination = postCount > 10
-const shouldPaginate = postCount > 10 // alternatively
+const postCount = 5;
+const hasPagination = postCount > 10;
+const shouldPaginate = postCount > 10; // alternatively
 ```
 
 ## 避免过度的简写
@@ -100,10 +100,10 @@ const shouldPaginate = postCount > 10 // alternatively
 
 ```js
 /* Bad */
-const onItmClk = () => {}
+const onItmClk = () => {};
 
 /* Good */
-const onItemClick = () => {}
+const onItemClick = () => {};
 ```
 
 ## 避免上下文重复
@@ -126,12 +126,12 @@ class MenuItem {
 
 ```jsx
 /* Bad */
-const isEnabled = itemCount > 3
-return <Button disabled={!isEnabled} />
+const isEnabled = itemCount > 3;
+return <Button disabled={!isEnabled} />;
 
 /* Good */
-const isDisabled = itemCount <= 3
-return <Button disabled={isDisabled} />
+const isDisabled = itemCount <= 3;
+return <Button disabled={isDisabled} />;
 ```
 
 ---
@@ -181,7 +181,7 @@ Accesses data immediately (i.e. shorthand getter of internal data).
 
 ```js
 function getFruitCount() {
-  return this.fruits.length
+  return this.fruits.length;
 }
 ```
 
@@ -192,14 +192,14 @@ function getFruitCount() {
 Sets a variable in a declarative way, with value `A` to value `B`.
 
 ```js
-let fruits = 0
+let fruits = 0;
 
 function setFruits(nextFruits) {
-  fruits = nextFruits
+  fruits = nextFruits;
 }
 
-setFruits(5)
-console.log(fruits) // 5
+setFruits(5);
+console.log(fruits); // 5
 ```
 
 ### `reset`
@@ -207,17 +207,17 @@ console.log(fruits) // 5
 Sets a variable back to its initial value or state.
 
 ```js
-const initialFruits = 5
-let fruits = initialFruits
-setFruits(10)
-console.log(fruits) // 10
+const initialFruits = 5;
+let fruits = initialFruits;
+setFruits(10);
+console.log(fruits); // 10
 
 function resetFruits() {
-  fruits = initialFruits
+  fruits = initialFruits;
 }
 
-resetFruits()
-console.log(fruits) // 5
+resetFruits();
+console.log(fruits); // 5
 ```
 
 ### `fetch`
@@ -238,11 +238,11 @@ For example, if you have a collection of selected filters on a search page, remo
 
 ```js
 function removeFilter(filterName, filters) {
-  return filters.filter((name) => name !== filterName)
+  return filters.filter((name) => name !== filterName);
 }
 
-const selectedFilters = ['price', 'availability', 'size']
-removeFilter('price', selectedFilters)
+const selectedFilters = ['price', 'availability', 'size'];
+removeFilter('price', selectedFilters);
 ```
 
 > See also [delete](#delete).
@@ -255,7 +255,7 @@ Imagine you are a content editor, and there is that notorious post you wish to g
 
 ```js
 function deletePost(id) {
-  return database.find({ id }).delete()
+  return database.find({ id }).delete();
 }
 ```
 
@@ -267,7 +267,7 @@ Creates new data from the existing one. Mostly applicable to strings, objects, o
 
 ```js
 function composePageUrl(pageName, pageId) {
-  return (pageName.toLowerCase() + '-' + pageId)
+  return pageName.toLowerCase() + '-' + pageId;
 }
 ```
 
@@ -279,10 +279,10 @@ Handles an action. Often used when naming a callback method.
 
 ```js
 function handleLinkClick() {
-  console.log('Clicked a link!')
+  console.log('Clicked a link!');
 }
 
-link.addEventListener('click', handleLinkClick)
+link.addEventListener('click', handleLinkClick);
 ```
 
 ---
@@ -294,16 +294,16 @@ link.addEventListener('click', handleLinkClick)
 ```js
 /* A pure function operating with primitives */
 function filter(list, predicate) {
-  return list.filter(predicate)
+  return list.filter(predicate);
 }
 
 /* Function operating exactly on posts */
 function getRecentPosts(posts) {
-  return filter(posts, (post) => post.date === Date.now())
+  return filter(posts, (post) => post.date === Date.now());
 }
 ```
 
-> 一些特定的情况下允许省略上下文，例如在JavaScript中，filter对Array进行操作很常见，就没必要命名为filterArray了。
+> 一些特定的情况下允许省略上下文，例如在 JavaScript 中，filter 对 Array 进行操作很常见，就没必要命名为 filterArray 了。
 
 --
 
@@ -311,8 +311,8 @@ function getRecentPosts(posts) {
 
 前缀用来增强变量的含义，如：
 
-- is，描述特征或状态，通常是boolean类型
-- has，描述是否具有某个状态或值，通常是boolean类型
+- is，描述特征或状态，通常是 boolean 类型
+- has，描述是否具有某个状态或值，通常是 boolean 类型
 - should，反映肯定的条件，加上特定的执行动作
 - min/max，描述边界或界限时使用
 - prev/next，指示前一个或下一个状态
@@ -322,12 +322,12 @@ function getRecentPosts(posts) {
 Describes a characteristic or state of the current context (usually `boolean`).
 
 ```js
-const color = 'blue'
-const isBlue = color === 'blue' // characteristic
-const isPresent = true // state
+const color = 'blue';
+const isBlue = color === 'blue'; // characteristic
+const isPresent = true; // state
 
 if (isBlue && isPresent) {
-  console.log('Blue is present!')
+  console.log('Blue is present!');
 }
 ```
 
@@ -337,11 +337,11 @@ Describes whether the current context possesses a certain value or state (usuall
 
 ```js
 /* Bad */
-const isProductsExist = productsCount > 0
-const areProductsPresent = productsCount > 0
+const isProductsExist = productsCount > 0;
+const areProductsPresent = productsCount > 0;
 
 /* Good */
-const hasProducts = productsCount > 0
+const hasProducts = productsCount > 0;
 ```
 
 ### `should`
@@ -350,7 +350,7 @@ Reflects a positive conditional statement (usually `boolean`) coupled with a cer
 
 ```js
 function shouldUpdateUrl(url, expectedUrl) {
-  return url !== expectedUrl
+  return url !== expectedUrl;
 }
 ```
 
@@ -364,7 +364,7 @@ Represents a minimum or maximum value. Used when describing boundaries or limits
  * the given min/max boundaries.
  */
 function renderPosts(posts, minPosts, maxPosts) {
-  return posts.slice(0, randomBetween(minPosts, maxPosts))
+  return posts.slice(0, randomBetween(minPosts, maxPosts));
 }
 ```
 
@@ -374,12 +374,12 @@ Indicate the previous or the next state of a variable in the current context. Us
 
 ```jsx
 function fetchPosts() {
-  const prevPosts = this.state.posts
+  const prevPosts = this.state.posts;
 
-  const fetchedPosts = fetch('...')
-  const nextPosts = concat(prevPosts, fetchedPosts)
+  const fetchedPosts = fetch('...');
+  const nextPosts = concat(prevPosts, fetchedPosts);
 
-  this.setState({ posts: nextPosts })
+  this.setState({ posts: nextPosts });
 }
 ```
 
@@ -389,12 +389,12 @@ function fetchPosts() {
 
 ```js
 /* Bad */
-const friends = 'Bob'
-const friend = ['Bob', 'Tony', 'Tanya']
+const friends = 'Bob';
+const friend = ['Bob', 'Tony', 'Tanya'];
 
 /* Good */
-const friend = 'Bob'
-const friends = ['Bob', 'Tony', 'Tanya']
+const friend = 'Bob';
+const friends = ['Bob', 'Tony', 'Tanya'];
 ```
 
 参考:

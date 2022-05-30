@@ -6,18 +6,18 @@
 
 ```js
 // Recommended
-var myList = "";
-var myListHTML = document.getElementById("myList").innerHTML;
+var myList = '';
+var myListHTML = document.getElementById('myList').innerHTML;
 
 for (var i = 0; i < 100; i++) {
-  myList += "<span>" + i + "</span>";
+  myList += '<span>' + i + '</span>';
 }
 
 myListHTML = myList;
 
 // Not recommended
 for (var i = 0; i < 100; i++) {
-  document.getElementById("myList").innerHTML += "<span>" + i + "</span>";
+  document.getElementById('myList').innerHTML += '<span>' + i + '</span>';
 }
 ```
 
@@ -33,14 +33,10 @@ var len;
 var i;
 // Recommended - size is calculated only 1 time and then stored
 // 现在不需要这么做了, 浏览器底层已经优化了
-for (i = 0, len = arr.length; i < len; i++) {
-
-}
+for (i = 0, len = arr.length; i < len; i++) {}
 
 // Not recommended - size needs to be recalculated 1000 times
-for (i = 0; i < arr.length; i++) {
-
-}
+for (i = 0; i < arr.length; i++) {}
 ```
 
 #### 异步加载第三方内容
@@ -48,8 +44,7 @@ for (i = 0; i < arr.length; i++) {
 当你无法保证嵌入第三方内容比如 Youtube 视频或者一个 like/tweet 按钮可以正常工作的时候，你需要考虑用异步加载这些代码，避免阻塞整个页面加载。
 
 ```js
-(function() {
-
+(function () {
   var script = document.getElementsByTagName('script')[0];
 
   function load(url) {
@@ -62,8 +57,7 @@ for (i = 0; i < arr.length; i++) {
   load('//apis.google.com/js/plusone.js');
   load('//platform.twitter.com/widgets.js');
   load('//s.widgetsite.com/widget.js');
-
-}());
+})();
 ```
 
 #### 避免使用 jQuery 实现动画

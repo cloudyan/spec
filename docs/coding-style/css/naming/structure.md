@@ -33,10 +33,11 @@
 `Elements` 的类名应尽可能仅有一个单词。
 
 ```css
- .search-form {
-    > .field { /* ... */ }
-    > .action { /* ... */ }
-  }
+/* prettier-ignore */
+.search-form {
+  > .field {}
+  > .action {}
+}
 ```
 
 ##### On multiple words （多个单词）
@@ -44,11 +45,12 @@
 对于倘若需要两个或以上单词表达的 `Elements` 类名，不应使用中划线和下划线连接，应**直接连接**。
 
 ```css
-  .profile-box {
-    > .firstname { /* ... */ }
-    > .lastname { /* ... */ }
-    > .avatar { /* ... */ }
-  }
+/* prettier-ignore */
+.profile-box {
+  > .firstname {}
+  > .lastname {}
+  > .avatar {}
+}
 ```
 
 ##### Avoid tag selectors （避免标签选择器）
@@ -56,10 +58,11 @@
 任何时候尽可能使用 `classnames`。标签选择器在使用上没有问题，但是其性能上稍弱，并且表意不明确。
 
 ```css
-  .article-card {
-    > h3    { /* ✗ avoid */ }
-    > .name { /* ✓ better */ }
-  }
+/* prettier-ignore */
+.article-card {
+  > h3 { /* ✗ avoid */ }
+  > .name { /* ✓ better */ }
+}
 ```
 
 #### Variants （变体）
@@ -73,20 +76,22 @@
 `Variants` 的 `classname` 应带有前缀中划线 `-`
 
 ```css
-  .like-button {
-    &.-wide { /* ... */ }
-    &.-short { /* ... */ }
-    &.-disabled { /* ... */ }
-  }
+/* prettier-ignore */
+.like-button {
+  &.-wide { /* ... */ }
+  &.-short { /* ... */ }
+  &.-disabled { /* ... */ }
+}
 ```
 
 ##### Element variants （元素变体）
 
 ```css
-  .shopping-card {
-    > .title { /* ... */ }
-    > .title.-small { /* ... */ }
-  }
+/* prettier-ignore */
+.shopping-card {
+  > .title { /* ... */ }
+  > .title.-small { /* ... */ }
+}
 ```
 
 ##### Dash prefixes （中划线前缀）
@@ -108,7 +113,7 @@ Components 应该在不同的上下文中都可以复用，所以应避免设置
 - Positioning (position, top, left, right, bottom)
 - Floats (float, clear)
 - Margins (margin)
-- Dimensions (width, height) *
+- Dimensions (width, height)
 
 ##### Fixed dimensions （固定尺寸）
 
@@ -119,23 +124,24 @@ Components 应该在不同的上下文中都可以复用，所以应避免设置
 倘若你需要为组件设置定位，应将在组件的上下文（父元素）中进行处理，比如以下例子中，将 `widths` 和 `floats` 应用在 `list component(.article-list)` 当中，而不是 `component(.article-card)` 自身。
 
 ```css
-  .article-list {
-    & {
-      @include clearfix;
-    }
-
-    > .article-card {
-      width: 33.3%;
-      float: left;
-    }
+.article-list {
+  & {
+    @include clearfix;
   }
 
-  .article-card {
-    & { /* ... */ }
-    > .image { /* ... */ }
-    > .title { /* ... */ }
-    > .category { /* ... */ }
+  > .article-card {
+    width: 33.3%;
+    float: left;
   }
+}
+
+/* prettier-ignore */
+.article-card {
+  & { /* ... */ }
+  > .image { /* ... */ }
+  > .title { /* ... */ }
+  > .category { /* ... */ }
+}
 ```
 
 #### Avoid over-nesting （避免过分嵌套）
@@ -143,22 +149,23 @@ Components 应该在不同的上下文中都可以复用，所以应避免设置
 当出现多个嵌套的时候容易失去控制，应保持不超过一个嵌套。
 
 ```css
-  /* ✗ Avoid: 3 levels of nesting */
-  .image-frame {
-    > .description {
-      /* ... */
+/* ✗ Avoid: 3 levels of nesting */
+.image-frame {
+  > .description {
+    /* ... */
 
-      > .icon {
-        /* ... */
-      }
+    > .icon {
+      /* ... */
     }
   }
+}
 
-  /* ✓ Better: 2 levels */
-  .image-frame {
-    > .description { /* ... */ }
-    > .description > .icon { /* ... */ }
-  }
+/* ✓ Better: 2 levels */
+/* prettier-ignore */
+.image-frame {
+  > .description { /* ... */ }
+  > .description > .icon { /* ... */ }
+}
 ```
 
 #### Apprehensions （顾虑）
@@ -181,12 +188,12 @@ Components 应该在不同的上下文中都可以复用，所以应避免设置
 
 RSCSS 与其他 CSS 模块组织系统相似的概念
 
-| RSCSS | BEM | SMACSS |
-| -- | -- | -- |
-| Component | Block | Module |
-| Element | Element | ? |
-| Layout | ? | Layout |
-| Variant | Modifier | Theme & State |
+| RSCSS     | BEM      | SMACSS        |
+| --------- | -------- | ------------- |
+| Component | Block    | Module        |
+| Element   | Element  | ?             |
+| Layout    | ?        | Layout        |
+| Variant   | Modifier | Theme & State |
 
 #### Summary （总结）
 

@@ -23,8 +23,6 @@
   margin-bottom: 15px;
 }
 
-
-
 /* 子组件块
  ============================================================================ */
 .selector-secondary {
@@ -43,22 +41,30 @@
 - 避免选择器嵌套层级过多，尽量少于 3 级；
 - 避免选择器和 Class、ID 叠加使用；
 
-出于[性能考量](http://www.stevesouders.com/blog/2009/06/18/simplifying-css-selectors/)，在没有必要的情况下避免元素选择器叠加 Class、ID  使用。
+出于[性能考量](http://www.stevesouders.com/blog/2009/06/18/simplifying-css-selectors/)，在没有必要的情况下避免元素选择器叠加 Class、ID 使用。
 
-元素选择器和 ID、Class 混合使用也违反关注分离原则。如果HTML标签修改了，就要再去修改 CSS 代码，不利于后期维护。
+元素选择器和 ID、Class 混合使用也违反关注分离原则。如果 HTML 标签修改了，就要再去修改 CSS 代码，不利于后期维护。
 
 ```css
 /* Not recommended */
-.red {}
-.box_green {}
-.page .header .login #username input {}
-ul#example {}
+.red {
+}
+.box_green {
+}
+.page .header .login #username input {
+}
+ul#example {
+}
 
 /* Recommended */
-#nav {}
-.box-video {}
-#username input {}
-#example {}
+#nav {
+}
+.box-video {
+}
+#username input {
+}
+#example {
+}
 ```
 
 #### 声明块格式
@@ -69,27 +75,29 @@ ul#example {}
 - 声明语句中的 `:` 后应添加一个空格；
 - 声明语句应以分号 `;` 结尾；
 - 一般以逗号分隔的属性值，每个逗号后应添加一个空格；
-- `rgb()`、`rgba()`、`hsl()`、`hsla()` 或 `rect()`  括号内的值，逗号分隔，但逗号后不添加一个空格；
+- `rgb()`、`rgba()`、`hsl()`、`hsla()` 或 `rect()` 括号内的值，逗号分隔，但逗号后不添加一个空格；
 - 对于属性值或颜色参数，省略小于 1 的小数前面的 0 （例如，`.5` 代替 `0.5`；`-.5px` 代替 `-0.5px`）；
 - 十六进制值应该全部小写和尽量简写，例如，`#fff` 代替 `#ffffff`；
 - 避免为 0 值指定单位，例如，用 `margin: 0;` 代替 `margin: 0px;`；
 
 ```css
 /*  Not recommended  */
-.selector, .selector-secondary, .selector[type=text] {
-  padding:15px;
-  margin:0px 0px 15px;
-  background-color:rgba(0, 0, 0, 0.5);
-  box-shadow:0px 1px 2px #CCC,inset 0 1px 0 #FFFFFF
+.selector,
+.selector-secondary,
+.selector[type='text'] {
+  padding: 15px;
+  margin: 0px 0px 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 1px 2px #ccc, inset 0 1px 0 #ffffff;
 }
 
 /* Recommended */
 .selector,
 .selector-secondary,
-.selector[type="text"] {
+.selector[type='text'] {
   padding: 15px;
   margin-bottom: 15px;
-  background-color: rgba(0,0,0,.5);
+  background-color: rgba(0, 0, 0, 0.5);
   box-shadow: 0 1px 2px #ccc, inset 0 1px 0 #fff;
 }
 ```
@@ -130,14 +138,14 @@ ul#example {}
   overflow: hidden;
 
   /* Typographic */
-  font: normal 13px "Helvetica Neue", sans-serif;
+  font: normal 13px 'Helvetica Neue', sans-serif;
   line-height: 1.5;
   text-align: center;
 
   /* Visual */
   background-color: #f5f5f5;
   color: #fff;
-  opacity: .8;
+  opacity: 0.8;
 
   /* Other */
   cursor: pointer;
@@ -159,14 +167,13 @@ html {
 }
 
 /* Recommended */
-@import url("//www.google.com/css/maia.css");
+@import url('//www.google.com/css/maia.css');
 
 html {
-  font-family: "open sans", arial, sans-serif;
+  font-family: 'open sans', arial, sans-serif;
 }
 
-.selector[type="text"] {
-
+.selector[type='text'] {
 }
 ```
 
@@ -175,14 +182,26 @@ html {
 将媒体查询放在尽可能相关规则的附近。不要将他们打包放在一个单一样式文件中或者放在文档底部。如果你把他们分开了，将来只会被大家遗忘。
 
 ```css
-.element { ... }
-.element-avatar { ... }
-.element-selected { ... }
+.element {
+  ...;
+}
+.element-avatar {
+  ...;
+}
+.element-selected {
+  ...;
+}
 
 @media (max-width: 768px) {
-  .element { ...}
-  .element-avatar { ... }
-  .element-selected { ... }
+  .element {
+    ...;
+  }
+  .element-avatar {
+    ...;
+  }
+  .element-selected {
+    ...;
+  }
 }
 ```
 

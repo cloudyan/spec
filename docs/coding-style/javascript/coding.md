@@ -23,8 +23,8 @@ if (x < y) {
 正例:
 
 ```js
-let str = 'foo';
-let testDiv = '<div id="test"></div>';
+let str = 'foo'
+let testDiv = '<div id="test"></div>'
 ```
 
 反例:
@@ -50,15 +50,15 @@ let testDiv = "<div id='test'></div>";
 var user = {
   age: 0,
   name: 1,
-  city: 3
-};
+  city: 3,
+}
 ```
 
 反例：
 
 ```js
-var user = new Object();
-user.age = 0;
-user.name = 0;
-user.city = 0;
+var user = new Object()
+user.age = 0
+user.name = 0
+user.city = 0
 ```

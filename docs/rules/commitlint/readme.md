@@ -1,21 +1,107 @@
 # commitlint
 
-- 官站 https://commitlint.js.org/
-- https://marionebl.github.io/commitlint/#/reference-rules
+> Lint commit messages
+> 检验提交的说明是否符合规范，不符合则不可以提交
 
-## Git commit日志基本规范
+主要是基于 AngularJS team [git commit guidelines](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines)，这是目前使用最广的写法，比较合理和系统化，并且有配套的工具。
 
-```yaml
-<type>(<scope>): <subject>
-<BLANK LINE>
+- [官站](https://commitlint.js.org/)
+- <https://marionebl.github.io/commitlint/#/reference-rules>
+
+## 项目接入
+
+usage
+
+```bash
+# Install and configure if needed
+npm i -D @commitlint/{cli,config-conventional}
+# For Windows:
+npm i -D @commitlint/cli @commitlint/config-conventional
+```
+
+config
+
+```bash
+# Add hook
+cat <<EEE > .husky/commit-msg
+#!/bin/sh
+. "\$(dirname "\$0")/_/husky.sh"
+
+npx --no -- commitlint --edit "\${1}"
+EEE
+
+
+# Make hook executable
+chmod a+x .husky/commit-msg
+```
+
+规则配置文件
+
+```bash
+echo "module.exports = { extends: ['@commitlint/config-conventional'] };" > commitlint.config.js
+```
+
+```js
+// .commitlintrc.js
+// 或 commitlint.config.js
+module.exports = {
+  extends: ['@commitlint/config-conventional'],
+  rules: {
+    'header-max-length': [1, 'always', 100],
+    // prettier-ignore
+    'type-enum': [
+      2,
+      'always',
+      [
+        'feat',
+        'fix',
+        'enhance',
+        'chore',
+        'test',
+        'doc',
+        'refactor',
+        'style',
+        'revert',
+      ],
+    ],
+  },
+};
+```
+
+测试
+
+```bash
+npx commitlint --from HEAD~1 --to HEAD --verbose
+
+echo 'foo: xxx' | npx commitlint --verbose
+```
+
+## 扩展
+
+### commit msg 规范
+
+为什么要，好处：
+
+- 提供更多的历史信息，方便快速浏览
+- 可以过滤某些 `commit`，便于筛选代码 `review`
+- 可以追踪 `commit` 生成更新日志
+- 可以关联 `issues`
+
+### Git commit 日志基本规范
+
+主要包含三部分：Header，Body 和 Footer, 格式规范如下
+
+```js
+<type>(<scope>): <subject> // header 必填
+// 空一行
 <body>
-<BLANK LINE>
+// 空一行
 <footer>
 ```
 
 所有的 type 类型如下：
 
-> type代表某次提交的类型，比如是修复一个bug还是增加一个新的feature。
+> type 代表某次提交的类型，比如是修复一个 bug 还是增加一个新的 feature。
 
 ```js
 feat:   新增 feature
@@ -43,68 +129,15 @@ revert: 回滚到上一个版本
 # 尾部：如果需要的化可以添加一个链接到issue地址或者其它文档，或者关闭某个issue。
 ```
 
-changelog.config.js
+规范的提交，可以通过工具辅助实现，可参考[交互式方案](./commitizen.md)。
 
-```js
-module.exports = {
-  disableEmoji: false,
-  format: '{type}{scope}: {emoji}{subject}',
-  list: ['test', 'feat', 'fix', 'chore', 'docs', 'refactor', 'style', 'ci', 'perf'],
-  maxMessageLength: 64,
-  minMessageLength: 3,
-  questions: ['type', 'scope', 'subject', 'body', 'breaking', 'issues', 'lerna'],
-  scopes: [],
-  types: {
-    chore: {
-      description: 'Build process or auxiliary tool changes',
-      emoji: '🤖',
-      value: 'chore',
-    },
-    ci: {
-      description: 'CI related changes',
-      emoji: '🎡',
-      value: 'ci',
-    },
-    docs: {
-      description: 'Documentation only changes',
-      emoji: '✏️',
-      value: 'docs',
-    },
-    feat: {
-      description: 'A new feature',
-      emoji: '🎸',
-      value: 'feat',
-    },
-    fix: {
-      description: 'A bug fix',
-      emoji: '🐛',
-      value: 'fix',
-    },
-    perf: {
-      description: 'A code change that improves performance',
-      emoji: '⚡️',
-      value: 'perf',
-    },
-    refactor: {
-      description: 'A code change that neither fixes a bug or adds a feature',
-      emoji: '💡',
-      value: 'refactor',
-    },
-    release: {
-      description: 'Create a release commit',
-      emoji: '🏹',
-      value: 'release',
-    },
-    style: {
-      description: 'Markup, white-space, formatting, missing semi-colons...',
-      emoji: '💄',
-      value: 'style',
-    },
-    test: {
-      description: 'Adding missing tests',
-      emoji: '💍',
-      value: 'test',
-    },
-  },
-}
+### 接入 CI
+
+Gitlab CI
+
+```yaml
+lint:commit:
+  stage: lint
+  script:
+    - echo "${CI_COMMIT_MESSAGE}" | npx commitlint
 ```

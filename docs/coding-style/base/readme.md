@@ -12,17 +12,17 @@
 
 **使用不带 `BOM` 的 UTF-8 编码。**
 
-- 在 HTML中指定编码 `<meta charset="utf-8">` ；
+- 在 HTML 中指定编码 `<meta charset="utf-8">` ；
 - 无需使用 `@charset` 指定样式表的编码，它默认为 `UTF-8` （参考 [@charset](https://developer.mozilla.org/en-US/docs/Web/CSS/@charset)）；
 
 #### 一律使用小写字母
 
 ```html
 <!-- Recommended -->
-<img src="google.png" alt="Google">
+<img src="google.png" alt="Google" />
 
 <!-- Not recommended -->
-<A HREF="/">Home</A>
+<a href="/">Home</a>
 ```
 
 ```css
@@ -30,7 +30,7 @@
 color: #e5e5e5;
 
 /* Not recommended */
-color: #E5E5E5;
+color: #e5e5e5;
 ```
 
 #### 省略外链资源 URL 协议部分
@@ -69,9 +69,7 @@ color: #E5E5E5;
 
 ```html
 <!-- 文章列表列表模块 -->
-<div class="article-list">
-...
-</div>
+<div class="article-list">...</div>
 ```
 
 - 区块注释
@@ -99,8 +97,6 @@ color: #E5E5E5;
   padding: 15px;
   margin-bottom: 15px;
 }
-
-
 
 /* 子组件块
  ============================================================================ */
@@ -144,7 +140,7 @@ function foo(p1, p2, p3) {
   return {
     p1: p1,
     p2: p2,
-    p3: p3
+    p3: p3,
   };
 }
 ```
@@ -164,7 +160,7 @@ function foo(p1, p2, p3) {
 
 #### 代码验证
 
-- 使用 [W3C HTML Validator](https://validator.w3.org/) 来验证你的HTML代码有效性；
-- 使用 [W3C CSS Validator](https://jigsaw.w3.org/css-validator/validator.html.zh-cn) 来验证你的CSS代码有效性；
+- 使用 [W3C HTML Validator](https://validator.w3.org/) 来验证你的 HTML 代码有效性；
+- 使用 [W3C CSS Validator](https://jigsaw.w3.org/css-validator/validator.html.zh-cn) 来验证你的 CSS 代码有效性；
 
 代码验证不是最终目的，真的目的在于让开发者在经过多次的这种验证过程后，能够深刻理解到怎样的语法或写法是非标准和不推荐的，即使在某些场景下被迫要使用非标准写法，也可以做到心中有数。

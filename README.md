@@ -224,7 +224,7 @@
 - [20 Snippets You should be using from Html5 Boilerplate](http://www.1stwebdesigner.com/snippets-html5-boilerplate/)
 - [谈谈 CSS 性能](http://www.w3.org/2015/Talks/0109-CSSConf-xq/)
 - [Web 动画性能指南](http://alexorz.github.io/animation-performance-guide/)
-- [Why Moving Elements With Translate() Is Better Than Pos:abs Top/left](http://www.paulirish.com/2012/- why-moving-elements-with-translate-is-better-than-posabs-topleft/)
+- [Why Moving Elements With Translate() Is Better Than Pos:abs Top/left](http://www.paulirish.com/2012/-why-moving-elements-with-translate-is-better-than-posabs-topleft/)
 - [High Performance Animations](http://www.html5rocks.com/zh/tutorials/speed/high-performance-animations/)
 - [jQuery Standards](http://lab.abhinayrathore.com/jquery-standards/)
 - [Learn jQuery](http://learn.jquery.com/about-jquery/)

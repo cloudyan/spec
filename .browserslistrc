@@ -1,0 +1,12 @@
+# .browserslistrc
+# https://github.com/browserslist/browserslist#queries
+
+defaults
+last 2 versions
+> 0.1%
+not dead
+ios >= 9
+android >= 4.4
+
+# npx browserslist "defaults, last 2 versions, > 0.1%, ios >= 9, android >= 4.4"
+# https://browserslist.dev

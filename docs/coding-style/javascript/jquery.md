@@ -10,7 +10,7 @@ $('.elem', context)
 context.find('.elem')
 ```
 
-*分别使用 1.4.2、1.4.4、1.6.2 三个版本测试浏览器在一秒内能够执行多少次，结果 1.6.2 版执行次数远超两个老版本。*
+_分别使用 1.4.2、1.4.4、1.6.2 三个版本测试浏览器在一秒内能够执行多少次，结果 1.6.2 版执行次数远超两个老版本。_
 
 #### jQuery 变量
 
@@ -30,10 +30,10 @@ $myDiv.click(function(){...});
 
 ```js
 // Not recommended
-var $productIds = $("#products .class");
+var $productIds = $('#products .class');
 
 // Recommended
-var $productIds = $("#products").find(".class");
+var $productIds = $('#products').find('.class');
 ```
 
 #### DOM 操作
@@ -42,30 +42,30 @@ var $productIds = $("#products").find(".class");
 2. 使用字符串连接或 `array.join` 要比 `.append()`性能更好；
 
 ```js
-var $myList = $("#list-container > ul").detach();
+var $myList = $('#list-container > ul').detach();
 //...a lot of complicated things on $myList
-$myList.appendTo("#list-container");
+$myList.appendTo('#list-container');
 ```
 
 ```js
 // Not recommended
-var $myList = $("#list");
-for(var i = 0; i < 10000; i++){
-    $myList.append("<li>"+i+"</li>");
+var $myList = $('#list');
+for (var i = 0; i < 10000; i++) {
+  $myList.append('<li>' + i + '</li>');
 }
 
 // Recommended
-var $myList = $("#list");
-var list = "";
-for(var i = 0; i < 10000; i++){
-  list += "<li>"+i+"</li>";
+var $myList = $('#list');
+var list = '';
+for (var i = 0; i < 10000; i++) {
+  list += '<li>' + i + '</li>';
 }
 $myList.html(list);
 
 // Much to recommended
 var array = [];
-for(var i = 0; i < 10000; i++){
-  array[i] = "<li>"+i+"</li>";
+for (var i = 0; i < 10000; i++) {
+  array[i] = '<li>' + i + '</li>';
 }
 $myList.html(array.join(''));
 ```
@@ -76,16 +76,16 @@ $myList.html(array.join(''));
 2. 对 Ajax 加载的 DOM 元素绑定事件时尽量使用事件委托。事件委托允许在父元素绑定事件，子代元素可以响应事件，也包括 Ajax 加载后添加的子代元素；
 
 ```js
-$("#myLink").on("click.mySpecialClick", myEventHandler);
-$("#myLink").unbind("click.mySpecialClick");
+$('#myLink').on('click.mySpecialClick', myEventHandler);
+$('#myLink').unbind('click.mySpecialClick');
 ```
 
 ```js
 // Not recommended
-$("#list a").on("click", myClickHandler);
+$('#list a').on('click', myClickHandler);
 
 // Recommended
-$("#list").on("click", "a", myClickHandler);
+$('#list').on('click', 'a', myClickHandler);
 ```
 
 #### 链式写法
@@ -94,15 +94,11 @@ $("#list").on("click", "a", myClickHandler);
 2. 当链式写法超过三次或者因为事件绑定变得复杂后，使用换行和缩进保持代码可读性；
 
 ```js
-$("#myDiv").addClass("error").show();
+$('#myDiv').addClass('error').show();
 ```
 
 ```js
-$("#myLink")
-  .addClass("bold")
-  .on("click", myClickHandler)
-  .on("mouseover", myMouseOverHandler)
-  .show();
+$('#myLink').addClass('bold').on('click', myClickHandler).on('mouseover', myMouseOverHandler).show();
 ```
 
 #### 其他
@@ -120,106 +116,88 @@ $("#myLink")
 // by Stefan Gabos
 
 // remember to change every instance of "pluginName" to the name of your plugin!
-(function($) {
+(function ($) {
+  // here we go!
+  $.pluginName = function (element, options) {
+    // plugin's default options
+    // this is private property and is  accessible only from inside the plugin
+    var defaults = {
+      foo: 'bar',
 
-    // here we go!
-    $.pluginName = function(element, options) {
+      // if your plugin is event-driven, you may provide callback capabilities
+      // for its events. execute these functions before or after events of your
+      // plugin, so that users may customize those particular events without
+      // changing the plugin's code
+      onFoo: function () {},
+    };
 
-        // plugin's default options
-        // this is private property and is  accessible only from inside the plugin
-        var defaults = {
+    // to avoid confusions, use "plugin" to reference the
+    // current instance of the object
+    var plugin = this;
 
-            foo: 'bar',
+    // this will hold the merged default, and user-provided options
+    // plugin's properties will be available through this object like:
+    // plugin.settings.propertyName from inside the plugin or
+    // element.data('pluginName').settings.propertyName from outside the plugin,
+    // where "element" is the element the plugin is attached to;
+    plugin.settings = {};
 
-            // if your plugin is event-driven, you may provide callback capabilities
-            // for its events. execute these functions before or after events of your
-            // plugin, so that users may customize those particular events without
-            // changing the plugin's code
-            onFoo: function() {}
+    var $element = $(element), // reference to the jQuery version of DOM element
+      element = element; // reference to the actual DOM element
 
-        }
+    // the "constructor" method that gets called when the object is created
+    plugin.init = function () {
+      // the plugin's final properties are the merged default and
+      // user-provided options (if any)
+      plugin.settings = $.extend({}, defaults, options);
 
-        // to avoid confusions, use "plugin" to reference the
-        // current instance of the object
-        var plugin = this;
+      // code goes here
+    };
 
-        // this will hold the merged default, and user-provided options
-        // plugin's properties will be available through this object like:
-        // plugin.settings.propertyName from inside the plugin or
-        // element.data('pluginName').settings.propertyName from outside the plugin,
-        // where "element" is the element the plugin is attached to;
-        plugin.settings = {}
+    // public methods
+    // these methods can be called like:
+    // plugin.methodName(arg1, arg2, ... argn) from inside the plugin or
+    // element.data('pluginName').publicMethod(arg1, arg2, ... argn) from outside
+    // the plugin, where "element" is the element the plugin is attached to;
 
-        var $element = $(element), // reference to the jQuery version of DOM element
-             element = element;    // reference to the actual DOM element
+    // a public method. for demonstration purposes only - remove it!
+    plugin.foo_public_method = function () {
+      // code goes here
+    };
 
-        // the "constructor" method that gets called when the object is created
-        plugin.init = function() {
+    // private methods
+    // these methods can be called only from inside the plugin like:
+    // methodName(arg1, arg2, ... argn)
 
-            // the plugin's final properties are the merged default and
-            // user-provided options (if any)
-            plugin.settings = $.extend({}, defaults, options);
+    // a private method. for demonstration purposes only - remove it!
+    var foo_private_method = function () {
+      // code goes here
+    };
 
-            // code goes here
+    // fire up the plugin!
+    // call the "constructor" method
+    plugin.init();
+  };
 
-        }
+  // add the plugin to the jQuery.fn object
+  $.fn.pluginName = function (options) {
+    // iterate through the DOM elements we are attaching the plugin to
+    return this.each(function () {
+      // if plugin has not already been attached to the element
+      if (undefined == $(this).data('pluginName')) {
+        // create a new instance of the plugin
+        // pass the DOM element and the user-provided options as arguments
+        var plugin = new $.pluginName(this, options);
 
-        // public methods
-        // these methods can be called like:
-        // plugin.methodName(arg1, arg2, ... argn) from inside the plugin or
-        // element.data('pluginName').publicMethod(arg1, arg2, ... argn) from outside
-        // the plugin, where "element" is the element the plugin is attached to;
-
-        // a public method. for demonstration purposes only - remove it!
-        plugin.foo_public_method = function() {
-
-            // code goes here
-
-        }
-
-        // private methods
-        // these methods can be called only from inside the plugin like:
-        // methodName(arg1, arg2, ... argn)
-
-        // a private method. for demonstration purposes only - remove it!
-        var foo_private_method = function() {
-
-            // code goes here
-
-        }
-
-        // fire up the plugin!
-        // call the "constructor" method
-        plugin.init();
-
-    }
-
-    // add the plugin to the jQuery.fn object
-    $.fn.pluginName = function(options) {
-
-        // iterate through the DOM elements we are attaching the plugin to
-        return this.each(function() {
-
-            // if plugin has not already been attached to the element
-            if (undefined == $(this).data('pluginName')) {
-
-                // create a new instance of the plugin
-                // pass the DOM element and the user-provided options as arguments
-                var plugin = new $.pluginName(this, options);
-
-                // in the jQuery version of the element
-                // store a reference to the plugin object
-                // you can later access the plugin and its methods and properties like
-                // element.data('pluginName').publicMethod(arg1, arg2, ... argn) or
-                // element.data('pluginName').settings.propertyName
-                $(this).data('pluginName', plugin);
-
-            }
-
-        });
-
-    }
-
+        // in the jQuery version of the element
+        // store a reference to the plugin object
+        // you can later access the plugin and its methods and properties like
+        // element.data('pluginName').publicMethod(arg1, arg2, ... argn) or
+        // element.data('pluginName').settings.propertyName
+        $(this).data('pluginName', plugin);
+      }
+    });
+  };
 })(jQuery);
 ```
 

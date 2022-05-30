@@ -3,7 +3,7 @@
 #### 语法
 
 - html 文件后缀名统一为 `.html`
-- 缩进使用 soft tab(2个空格)
+- 缩进使用 soft tab(2 个空格)
 - 嵌套的节点应该缩进
 - 在属性上, 使用上引号, 不要使用单引号
 - 属性名全小写, 用连字符做分隔符
@@ -17,8 +17,8 @@
 - 尽量减少标签数量；
 
 ```html
-<img src="images/google.png" alt="Google">
-<input type="text" name="title">
+<img src="images/google.png" alt="Google" />
+<input type="text" name="title" />
 
 <ul>
   <li>Style</li>
@@ -27,11 +27,11 @@
 
 <!-- Not recommended -->
 <span class="avatar">
-  <img src="...">
+  <img src="..." />
 </span>
 
 <!-- Recommended -->
-<img class="avatar" src="...">
+<img class="avatar" src="..." />
 ```
 
 #### Class 与 ID
@@ -63,9 +63,9 @@ HTML 属性应该按照特定的顺序出现以保证易读性。
 ```html
 <a id="..." class="..." data-modal="toggle" href="###"></a>
 
-<input class="form-control" type="text">
+<input class="form-control" type="text" />
 
-<img src="..." alt="...">
+<img src="..." alt="..." />
 ```
 
 #### 引号
@@ -74,7 +74,7 @@ HTML 属性应该按照特定的顺序出现以保证易读性。
 
 ```html
 <!-- Not recommended -->
-<span id='j-hook' class=text>Google</span>
+<span id="j-hook" class="text">Google</span>
 
 <!-- Recommended -->
 <span id="j-hook" class="text">Google</span>
@@ -98,16 +98,16 @@ HTML 属性应该按照特定的顺序出现以保证易读性。
 - `<a>`里不可以嵌套交互式元素`<a>`、`<button>`、`<select>`等;
 - `<p>`里不可以嵌套块级元素`<div>`、`<h1>~<h6>`、`<p>`、`<ul>/<ol>/<li>`、`<dl>/<dt>/<dd>`、`<form>`等。
 
-更多详情，参考[WEB标准系列-HTML元素嵌套](http://www.smallni.com/element-nesting/)
+更多详情，参考[WEB 标准系列-HTML 元素嵌套](http://www.smallni.com/element-nesting/)
 
 #### 布尔值属性
 
 HTML5 规范中 `disabled`、`checked`、`selected` 等属性不用设置值。
 
 ```html
-<input type="text" disabled>
+<input type="text" disabled />
 
-<input type="checkbox" value="1" checked>
+<input type="checkbox" value="1" checked />
 
 <select>
   <option value="1" selected>1</option>

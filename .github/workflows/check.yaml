@@ -1,0 +1,90 @@
+name: CI
+
+env:
+  # 7 GiB by default on GitHub, setting to 6 GiB
+  # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources
+  NODE_OPTIONS: --max-old-space-size=6144
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - release/*
+      - feat/*
+      - fix/*
+      - perf/*
+      - dev
+    paths-ignore:
+      - "**.md"
+  pull_request:
+    paths-ignore:
+      - "**.md"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    name: "Lint: node-16, ubuntu-latest"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          # cache: pnpm # npm, yarn or pnpm
+
+      # https://github.com/stylelint/stylelint-demo/blob/main/.github/workflows/nodejs.yml
+      # - name: Get Node.js version from package.json
+      #   run: |
+      #     node -p 'require("./package.json").engines.node' | tee .node-version
+
+      - name: Env
+        run: npm version # node -v && npm -v
+
+      - name: install pnpm
+        run: npm i -g pnpm
+
+      - name: Install deps
+        # run: npm ci # --prefer-offline # npm ci or yarn
+        # run: yarn install --frozen-lockfile # npm ci or yarn
+        run: pnpm install --frozen-lockfile
+
+      # https://stackoverflow.com/questions/67307001/how-to-run-commitlint-in-github-workflow-on-every-commit-of-a-push
+      # https://github.com/marketplace/actions/commit-linter
+      - name: CommitLint check
+        id: run_commitlint
+        # Commit was forced, checking only the latest commit from push instead of a range of commit messages
+        uses: wagoid/commitlint-github-action@v4
+        # pull_request
+        # run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+
+      # https://docs.github.com/en/actions/learn-github-actions/expressions#status-check-functions
+      # - name: Show results from JSON output
+      #   if: ${{ always() }}
+      #   run: echo ${{ toJSON(steps.run_commitlint.outputs.results) }}
+
+      # https://github.com/marketplace/actions/lint-action
+      # Check formatting 需要结合 lint-staged 做 lint, 检查区间
+      - name: Prettier check
+        if: ${{ always() }}
+        run: npm run prettier -- --check
+
+      - name: ESLint check
+        if: ${{ always() }}
+        run: npm run eslint -- --max-warnings 0
+
+      - name: StyleLint check
+        if: ${{ always() }}
+        run: npm run stylelint -- --max-warnings 0
+
+      - name: Test
+        run: npm test

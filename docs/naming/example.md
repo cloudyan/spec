@@ -2,29 +2,29 @@
 
 1. 采用小写驼峰命名 lowerCamelCase，代码中的命名均不能以下划线，也不能以下划线或美元符号结束
 
-    反例: `_name` / `name_` / `name$`
+   反例: `_name` / `name_` / `name$`
 
 2. 方法名、参数名、成员变量、局部变量都统一使用 lowerCamelCase 风格，必须遵从驼峰形式。
 
-    正例: `localValue` / `getHttpMessage()` / `inputUserId`
+   正例: `localValue` / `getHttpMessage()` / `inputUserId`
 
-    其中 `method` 方法命名必须是 `动词` 或者 `动词+名词` 形式
+   其中 `method` 方法命名必须是 `动词` 或者 `动词+名词` 形式
 
-    正例: `saveShopCarData` / `openShopCarInfoDialog`
+   正例: `saveShopCarData` / `openShopCarInfoDialog`
 
-    反例: `save` / `open` / `show` / `go`
+   反例: `save` / `open` / `show` / `go`
 
-    > 特此说明，增删查改，详情统一使用如下 5 个单词，不得使用其他（目的是为了统一各个端）
+   > 特此说明，增删查改，详情统一使用如下 5 个单词，不得使用其他（目的是为了统一各个端）
 
-    ```code
-    add / update / delete / detail / get
-    ```
+   ```code
+   add / update / delete / detail / get
+   ```
 
 3. 常量命名全部大写，单词间用下划线隔开，力求语义表达完整清楚，不要嫌名字长。
 
-    正例: `MAX_STOCK_COUNT`
+   正例: `MAX_STOCK_COUNT`
 
-    反例: `MAX_COUNT`
+   反例: `MAX_COUNT`
 
 ## 附： 函数方法常用的动词
 

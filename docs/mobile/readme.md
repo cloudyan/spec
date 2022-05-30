@@ -57,7 +57,7 @@
     - [iOS 中 position:fixed 吸底时滑动出现抖动](#ios-中-positionfixed-吸底时滑动出现抖动)
     - [fixed 与 input](#fixed-与-input)
     - [input 的 compositionstart 和 compositionend 事件](#input-的-compositionstart-和-compositionend-事件)
-    - [iPhone X系列安全区域适配问题](#iphone-x系列安全区域适配问题)
+    - [iPhone X 系列安全区域适配问题](#iphone-x系列安全区域适配问题)
     - [页面生成为图片和二维码问题](#页面生成为图片和二维码问题)
       - [生成二维码](#生成二维码)
       - [生成图片](#生成图片)
@@ -84,12 +84,12 @@
 
 参考:
 
-- [吃透移动端 1px｜从基本原理到开源解决方案](https://juejin.cn/post/6844904023145857038)
+- [吃透移动端 1px ｜从基本原理到开源解决方案](https://juejin.cn/post/6844904023145857038)
 
 方案
 
 - 0.5px border
-  - 从iOS 8开始，iOS 浏览器支持 0.5px 的 border，但是在 Android 上是不支持的，0.5px 会被认为是 0px，所以这种方法，兼容性是很差的。
+  - 从 iOS 8 开始，iOS 浏览器支持 0.5px 的 border，但是在 Android 上是不支持的，0.5px 会被认为是 0px，所以这种方法，兼容性是很差的。
 - 背景渐变
   - `background-image:linear-gradient(180deg, $border-color, $border-color 50%, transparent 50%),`
   - 没有办法实现圆角
@@ -112,9 +112,9 @@
 快速回弹滚动在手机浏览器上的发展历史：
 
 1. 早期的时候，移动端的浏览器都不支持非 body 元素的滚动条，所以一般都借助 iScroll;
-2. Android 3.0 / iOS 解决了非 body 元素的滚动问题，但滚动条不可见，同时 iOS 上只能通过2个手指进行滚动；
+2. Android 3.0 / iOS 解决了非 body 元素的滚动问题，但滚动条不可见，同时 iOS 上只能通过 2 个手指进行滚动；
 3. Android 4.0 解决了滚动条不可见及增加了快速回弹滚动效果，不过随后这个特性又被移除；
-4. iOS从5.0开始解决了滚动条不可见及增加了快速回弹滚动效果
+4. iOS 从 5.0 开始解决了滚动条不可见及增加了快速回弹滚动效果
 
 如果想要为某个元素拥有 Native 般的滚动效果，可以这样操作：
 
@@ -133,7 +133,6 @@
 
 #### 监听事件禁止滑动
 
-
 #### 滚动妥协填充空白，装饰成其他功能
 
 ### 页面放大或缩小不确定性行为
@@ -146,7 +145,7 @@
 
 #### 使用 fastclick 库(推荐)
 
-[fastclick源码](https://github.com/ftlabs/fastclick/blob/main/lib/fastclick.js) 核心代码不长, 1000 行不到。有兴趣可以了解一下!
+[fastclick 源码](https://github.com/ftlabs/fastclick/blob/main/lib/fastclick.js) 核心代码不长, 1000 行不到。有兴趣可以了解一下!
 
 ### click 的 300ms 延迟响应
 
@@ -159,19 +158,20 @@ click 的 300ms 延迟是由双击缩放(double tap to zoom)所导致的，由�
 FastClick 的使用方法非常简单，在 window load 事件之后，在 `<body>` 上调用`FastClick.attach()` 即可。
 
 ```js
-window.addEventListener('load', function() {
-  FastClick.attach(document.body);
-}, false);
+window.addEventListener(
+  'load',
+  function () {
+    FastClick.attach(document.body);
+  },
+  false,
+);
 ```
-
 
 ### 软键盘将页面顶起来、收起未回落问题
 
-
-
 ### iOS 中 position:fixed 的兼容性问题
 
-- [谈一谈苹果手机关于position:fixed的兼容性](https://juejin.cn/post/6844903951855271949)
+- [谈一谈苹果手机关于 position:fixed 的兼容性](https://juejin.cn/post/6844903951855271949)
 - https://hehuiyun.github.io/2019/02/19/%E8%A7%A3%E5%86%B3position-fixed%E5%9C%A8ios%E7%B3%BB%E7%BB%9F%E5%A4%B1%E6%95%88%E7%9A%84%E9%97%AE%E9%A2%98/
 - https://www.cnblogs.com/xiahj/p/8036419.html
 
@@ -186,7 +186,7 @@ window.addEventListener('load', function() {
 
 在 iOS 上，当点击 input 标签获取焦点唤起软键盘的时候，fixed 定位会暂时失效，或者可以理解为变成了 absolute 定位，在含有滚动的页面，fixed 定位的节点和其他节点一起滚动。
 
-但是除此之外，还有很多坑比较难以解决，例如 Android 软键盘唤起后遮挡住 input 标签，用户没法看到自己输入的字符串，iOS 则需要在输入至少一个字符之后，才能将对应的 input 标签滚动到合适的位置，所以为了避开这些难以解决的坑，在有表单输入的页面，尽量用absolute 或者 flex 替换 fixed。
+但是除此之外，还有很多坑比较难以解决，例如 Android 软键盘唤起后遮挡住 input 标签，用户没法看到自己输入的字符串，iOS 则需要在输入至少一个字符之后，才能将对应的 input 标签滚动到合适的位置，所以为了避开这些难以解决的坑，在有表单输入的页面，尽量用 absolute 或者 flex 替换 fixed。
 
 - https://juejin.cn/post/6844903473092231182
 
@@ -223,9 +223,9 @@ inputElement.addEventListener('input', function(event) {
 });
 ```
 
-这里需要注意的一点是，compositionend 事件是在 input 事件后触发的，所以在 compositionend事件触发时，也要调用 input 事件处理逻辑。
+这里需要注意的一点是，compositionend 事件是在 input 事件后触发的，所以在 compositionend 事件触发时，也要调用 input 事件处理逻辑。
 
-### iPhone X系列安全区域适配问题
+### iPhone X 系列安全区域适配问题
 
 - `viewport-fit` iOS11 新增特性(默认: `contain`)
   - 苹果公司为了适配 iPhoneX 对现有 viewport meta 标签的一个扩展
@@ -284,7 +284,7 @@ padding-bottom: env(safe-area-inset-bottom); /* 兼容 iOS >= 11.2 */
 
 这里推荐一篇高质量总结, 非常全面
 
-- [H5唤起APP指南](https://suanmei.github.io/2018/08/23/h5_call_app/)
+- [H5 唤起 APP 指南](https://suanmei.github.io/2018/08/23/h5_call_app/)
 
 ### 设备检测
 
@@ -323,8 +323,8 @@ var IsBaiduWallet = test(/baiduwallet/);
 PC 端滚动条的值是通过 `document.scrollTop` 和 `document.scrollLeft` 获得，但在 iOS 中并没有滚动条的概念，所以仅能通过 windows.scroll 获取，同时也能兼容 Android 。
 
 ```js
-window.scrollY
-window.scrollX
+window.scrollY;
+window.scrollX;
 ```
 
 ### 清除输入框内阴影
@@ -344,17 +344,20 @@ textarea {
 #### 页面窗口自动调整到设备宽度，并禁止用户缩放页面
 
 ```html
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+/>
 ```
 
 #### 电话号码识别
 
 iOS Safari ( Android 或其他浏览器不会) 会自动识别看起来像电话号码的数字，将其处理为电话号码链接，比如：
 
-- 7位数字，形如：1234567
+- 7 位数字，形如：1234567
 - 带括号及加号的数字，形如：(+86)123456789
 - 双连接线的数字，形如：00-00-00111
-- 11位数字，形如：13800138000
+- 11 位数字，形如：13800138000
 
 ```html
 <!-- 关闭电话号码识别： -->
@@ -386,8 +389,7 @@ iOS Safari ( Android 或其他浏览器不会) 会自动识别看起来像电话
 <!-- 可选default、black、black-translucent -->
 ```
 
-
 参考:
 
 - [吃透移动端 H5 响应式布局 ｜深入原理到目前最佳实践方案](https://juejin.cn/post/6844904021552005128)
-- [吃透移动端 H5 与 Hybrid | 实践踩坑12种问题汇总](https://juejin.cn/post/6844904024790007815)
+- [吃透移动端 H5 与 Hybrid | 实践踩坑 12 种问题汇总](https://juejin.cn/post/6844904024790007815)
