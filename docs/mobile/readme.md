@@ -57,7 +57,7 @@
     - [iOS 中 position:fixed 吸底时滑动出现抖动](#ios-中-positionfixed-吸底时滑动出现抖动)
     - [fixed 与 input](#fixed-与-input)
     - [input 的 compositionstart 和 compositionend 事件](#input-的-compositionstart-和-compositionend-事件)
-    - [iPhone X 系列安全区域适配问题](#iphone-x系列安全区域适配问题)
+    - [iPhone X 系列安全区域适配问题](#iphone-x-系列安全区域适配问题)
     - [页面生成为图片和二维码问题](#页面生成为图片和二维码问题)
       - [生成二维码](#生成二维码)
       - [生成图片](#生成图片)
