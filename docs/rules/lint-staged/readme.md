@@ -1,6 +1,7 @@
 # lint-staged
 
 > Run linters against staged git files and don't let 💩 slip into your code base!
+>
 > 仅过滤 Git 暂存区的代码, 避免每次全量检测代码
 
 - 如果对项目中所有文件一次性格式化，大范围的修改很可能出现不可控的情况。

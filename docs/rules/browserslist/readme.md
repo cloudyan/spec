@@ -3,6 +3,7 @@
 The config to share target browsers and Node.js versions between different front-end tools. It is used in:
 
 > 用于不通工具共享浏览器或 node 版本配置信息
+>
 > 国内情况复杂，如要精准配置，最好核实下用户覆盖统计数据
 
 ## 项目集成

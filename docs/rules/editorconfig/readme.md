@@ -1,7 +1,8 @@
 # EditorConfig
 
-> EditorConfig 编辑器编码规范, 是可移植自定义编辑器设置。
-> 实现跨平台、编辑器和 IDE 统一编程风格, 提高代码阅读质量。
+> EditorConfig 编辑器编码规范。
+>
+> 实现跨平台、编辑器(IDE)统一编程风格, 提高代码阅读质量。
 
 为什么需要？
 
@@ -29,8 +30,8 @@ trim_trailing_whitespace = true
 
 注意:
 
-> EditorConfig 设置优先于全局 Visual Studio 文本编辑器设置
-> 在 EditorConfig 文件中设置的约定当前无法在 CI/CD 管道中强制为生成错误或警告。
+- EditorConfig 设置优先于全局 Visual Studio 文本编辑器设置
+- 在 EditorConfig 文件中设置的约定当前无法在 CI/CD 管道中强制为生成错误或警告。
 
 ## 扩展
 
@@ -38,8 +39,8 @@ trim_trailing_whitespace = true
 
 更多配置项说明
 
-> Unix-style newlines with a newline ending every file
-> 根目录的配置文件，编辑器会由当前目录向上查找，如果找到 `roor = true` 的文件，则不再查找
+- Unix-style newlines with a newline ending every file
+- 根目录的配置文件，编辑器会由当前目录向上查找，如果找到 `root = true` 的文件，则不再查找
 
 ```ini
 # .editorconfig

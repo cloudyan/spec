@@ -183,9 +183,10 @@ package.json
 
 通过查看源码，确认了逻辑，目前要使用 `~/.cz-config.js` 配置，还需要在 package.json 中指定配置路径 `pkg.config['cz-customizable'].config = "/xx/xx/.cz-config.js"`。
 
-> 已提交 [PR](https://github.com/leoforfree/cz-customizable/pull/177)
-> 项目内可以临时使用 `npx patch-package cz-customizable`（仍存在的问题，独立模式的支持全局调用配合全局配置就好了）
-> 注意: 验证此逻辑需要去除 project root 下的 `.cz-config.js`
+1. 已提交 [PR](https://github.com/leoforfree/cz-customizable/pull/177)
+2. 项目内可以临时使用 `npx patch-package cz-customizable`（仍存在的问题，独立模式的支持全局调用配合全局配置就好了）
+
+注意: 验证此逻辑需要去除 project root 下的 `.cz-config.js`
 
 ```js
 {

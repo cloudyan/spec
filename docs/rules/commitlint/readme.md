@@ -1,6 +1,7 @@
 # commitlint
 
 > Lint commit messages
+>
 > 检验提交的说明是否符合规范，不符合则不可以提交
 
 主要是基于 AngularJS team [git commit guidelines](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines)，这是目前使用最广的写法，比较合理和系统化，并且有配套的工具。
