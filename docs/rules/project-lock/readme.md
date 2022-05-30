@@ -1,13 +1,13 @@
 # project-lock
 
-锁定一个项目依赖的运行环境、依赖包等关键配置信息。project-lock? env-lock?
+锁定一个项目依赖的运行环境、依赖包、npm源等关键配置信息。project-lock? env-lock?
 
 > 保证项目开发维护的稳定性。
 
 项目下 add `.npmrc` && `.nvmrc`, 并且将 deps lock 文件提交 git 库。
 
 ```bash
-# 添加 node 版本
+# 添加 node 版本控制(基于 nvm)
 node -v > .nvmrc
 
 # v16.15.0
@@ -55,18 +55,18 @@ CI 流程应使用锁文件安装依赖，实现更快、更可靠的构建。�
 
 ## 扩展
 
-为什么需要这个？
+### 为什么需要这个？
 
-背景: 同一个项目，A 同学能运行起来的项目，B 同学运行不起来
+背景: 同一个项目，A 同学能运行起来的项目，B 同学运行不起来？
 
-原因分析是版本一致性问题，优化点包含以下内容:
+原因分析是环境一致性问题，涉及内容如下:
 
 - 开发者的机器
-- 项目应用
-- 公共依赖包
-- 部署系统(本地与部署系统 node 和 npm 应一致)
+- 项目应用配置
+- 依赖包
+- 部署系统环境
 
-为便于本地开发，提供以下便捷脚本
+### 自动切换脚本
 
 跟随项目 `.nvmrc` 自动切换 node 版本, 可以在 `~/.zshrc` 添加以下脚本
 
@@ -94,3 +94,20 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 ```
+
+### nexus 版本策略
+
+私有源 nexus 系统需要设定 npm 包的版本策略设置为**禁止覆盖**
+
+> nexus 版本策略：允许覆盖、禁止覆盖、只读。（向nexus服务发布NPM包时，使用的策略）
+
+如果存在覆盖发布，会导致 lock 文件校验码验证不通过，可能遇到以下问题
+
+```bash
+npm install --no-optional --production
+npm ERR! code EINTEGRITY
+npm ERR! sha512-nADAsJGM8jw18ufzd8/a26rC/+JVJCpLFH3fUkkxaXyMvDoAK99BDdAL5UqN9XZUj85nwM/3Lxbw8N9BRppFGA== integrity checksum failed when using sha512: wanted sha512-nADAsJGM8jw18ufzd8/a26rC/+JVJCpLFH3fUkkxaXyMvDoAK99BDdAL5UqN9XZUj85nwM/3Lxbw8N9BRppFGA== but got sha512-s9YhDRKaBS2uLucU30Cy5td+81hr1Vj+rn0m7b1U7mpcUNPUNwil7ifZS6m5b1Jqy6jh86WrRr37GqCmd3Lpqw==. (7539 bytes)
+```
+
+- `--no-optional` 跳过可选包
+- `--production` 只安装 dependencies

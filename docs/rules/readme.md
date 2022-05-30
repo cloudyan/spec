@@ -66,8 +66,7 @@
 
 ### project-lock
 
-
-锁定一个项目依赖的运行环境、依赖包等关键配置信息。project-lock? env-lock?
+锁定一个项目依赖的运行环境、依赖包、npm源等关键配置信息。project-lock? env-lock?
 
 > 保证项目开发维护的稳定性。
 
