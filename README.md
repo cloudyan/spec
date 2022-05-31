@@ -1,5 +1,3 @@
-<!-- @format -->
-
 # spec
 
 这是一份前端开发规范。
@@ -8,7 +6,7 @@
 
 如何执行落地？
 
-集成到 vscode, webpack 以及 CI 流程上。
+可以集成到 githooks, vscode, webpack 以及 CI 流程上, 保证落地。
 
 ## 什么是高质量代码?
 

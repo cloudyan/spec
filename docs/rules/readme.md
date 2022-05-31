@@ -1,6 +1,6 @@
 # lint
 
-checkstyle 参见 lint example
+checkstyle 整理过程，详见 [lint example](https://github.com/cloudyan/lint-example)
 
 ## 进度
 
@@ -28,6 +28,9 @@ checkstyle 参见 lint example
     - [x] prettier
     - [x] eslint
     - [x] stylelint
+- 便捷接入
+  - [ ] 提取共享规则
+  - [ ] 一键接入(e.g.: npx lint init)
 
 ## lint 接入
 

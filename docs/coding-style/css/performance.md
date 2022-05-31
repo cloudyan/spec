@@ -14,26 +14,26 @@
 
 当发生重排的时候，浏览器需要重新计算布局位置与大小，[更多详情](http://www.jianshu.com/p/e305ace24ddf)。
 
-常见的重排元素:
+常见的重排元素(不是样式属性排序):
 
-- width
-- height
-- padding
-- margin
-- display
-- border-width
 - position
 - top
 - left
 - right
 - bottom
-- font-size
 - float
+- width
+- height
+- margin
+- padding
+- display
+- border-width
 - text-align
-- overflow-y
-- font-weight
 - overflow
+- overflow-y
 - font-family
+- font-size
+- font-weight
 - line-height
 - vertical-align
 - clear
