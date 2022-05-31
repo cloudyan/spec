@@ -49,8 +49,9 @@ config
 
 ```json
 "scripts": {
-  "prettier": "prettier .",
-  "prettier:fix": "npm run prettier -- --write"
+  "prettier": "prettier . --check",
+  "prettier:fix": "npm run prettier -- --write",
+  "prettier:diff": "npm run prettier:fix && git --no-pager diff && git checkout -- ."
 }
 ```
 

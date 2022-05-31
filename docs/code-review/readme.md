@@ -38,3 +38,4 @@
 
 - https://jimmysong.io/eng-practices/docs/review/
 - https://mp.weixin.qq.com/s/EvQzG5esLfWAWbqflkU0WA
+- https://github.com/sapegin/frontend-pull-request-checklist

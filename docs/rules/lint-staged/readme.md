@@ -6,6 +6,7 @@
 
 - 如果对项目中所有文件一次性格式化，大范围的修改很可能出现不可控的情况。
 - 借助 lint-staged 可将处理范围限制在 Git 暂存区内 (staged) 的文件。
+- 由于`v12.0.0` `lint-staged`是一个纯 ESM 模块，因此请确保您的 Node.js 版本至少为`12.20.0`、`14.13.1`或`16.0.0`
 
 ## 使用
 
@@ -21,12 +22,24 @@ package.json
   "scripts": {
     "lint-staged": "lint-staged"
   },
+  // 默认任务并行，子任务顺序执行
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,md,yml,yaml,css,less,scss}": ["npm run prettier:fix"],
-    "*.{js,jsx,ts,tsx}": ["npm run eslint:fix", "npm run stylelint:fix"]
+    "*.{json,md,yml,yaml}": [
+      "npm run prettier:fix"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "npm run prettier:fix",
+      "npm run eslint:fix"
+    ],
+    "*.{css,less,scss}": [
+      "npm run prettier:fix",
+      "npm run stylelint:fix"
+    ]
   }
 }
 ```
+
+注意: `--concurrent` 控制任务的并发性, 默认 `true`, 这不会影响子任务的并发性（数组里的任务, 它们将始终按顺序运行）
 
 ## 扩展
 

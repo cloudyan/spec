@@ -29,7 +29,7 @@ checkstyle 整理过程，详见 [lint example](https://github.com/cloudyan/lint
     - [x] eslint
     - [x] stylelint
 - 便捷接入
-  - [ ] 提取共享规则
+  - [x] 提取配置
   - [ ] 一键接入(e.g.: npx lint init)
 
 ## lint 接入
@@ -63,7 +63,9 @@ checkstyle 整理过程，详见 [lint example](https://github.com/cloudyan/lint
     - [markdownlint](#markdownlint)
   - [IDE 编辑器接入](#ide-编辑器接入)
   - [CI 流程接入](#ci-流程接入)
-  - [便捷规范接入](#便捷规范接入)
+  - [便捷接入](#便捷接入)
+    - [提取配置](#提取配置)
+    - [一键接入](#一键接入)
   - [参考文档](#参考文档)
     - [扩展阅读](#扩展阅读)
 
@@ -171,7 +173,7 @@ config
 
 ```json
 "scripts": {
-  "prettier": "prettier .",
+  "prettier": "prettier . --check",
   "prettier:fix": "npm run prettier -- --write"
 }
 ```
@@ -266,7 +268,7 @@ package.json
 
 ```json
 {
-  "stylelint": "stylelint --cache --allow-empty-input 'src/**/*.{css,less,scss,sass}'",
+  "stylelint": "stylelint --allow-empty-input 'src/**/*.{css,less,scss,sass}'",
   "stylelint:fix": "npm run stylelint -- --fix"
 }
 ```
@@ -356,9 +358,19 @@ package.json
   "scripts": {
     "lint-staged": "lint-staged"
   },
+  // 默认任务并行，子任务顺序执行
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,md,yml,yaml,css,less,scss}": ["npm run prettier:fix"],
-    "*.{js,jsx,ts,tsx}": ["npm run eslint:fix", "npm run stylelint:fix"]
+    "*.{json,md,yml,yaml}": [
+      "npm run prettier:fix"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "npm run prettier:fix",
+      "npm run eslint:fix"
+    ],
+    "*.{css,less,scss}": [
+      "npm run prettier:fix",
+      "npm run stylelint:fix"
+    ]
   }
 }
 ```
@@ -588,15 +600,98 @@ ESLint 报告中的任何问题都将出现在标有 EsLint 徽章的 Sonar 问�
 
 CI 流程需要接入, 但因为使用了 `list-staged`, 导致存在了复杂度。（每次 push 会包含多个 commit）
 
-## 便捷规范接入
+## 便捷接入
 
-便捷规范接入
+如上步骤项目接入配置，依赖项太多步骤又繁琐，不便于项目管理维护。所以我们也需要 `opinionated` 的方法接入。
+
+1. 提取配置
+2. 支持一键接入
+
+### 提取配置
+
+将配置及依赖提取，通过一个 npm 包统一管理。
 
 ```bash
-npm i --save-dev @xxx/lint eslint stylelint prettier @commitlint/cli husky lint-staged
+npm i --save-dev @deepjs/lint eslint stylelint prettier @commitlint/cli husky lint-staged cross-env
+
+# 不需要再安装其他 Lint 插件或者插件集等依赖，@deepjs/lint 中已包含这部分依赖。
 ```
 
-> 不需要安装其他 Lint 插件或者插件集，@xxx/lint 中已包含这部分依赖。
+使用配置
+
+```js
+// .prettierrc.js
+const { prettier } = require('@deepjs/lint')
+module.exports = prettier
+
+
+// .eslintrc.js
+// eslintVue eslintReact eslintReactTs
+const { eslint } = require('@deepjs/lint')
+module.exports = eslint
+
+
+// .stylelint.js
+const { stylelint } = require('@deepjs/lint')
+module.exports = stylelint
+
+
+// .commitlintrc.js
+const { commitlint } = require('@deepjs/lint')
+module.exports = commitlint
+
+
+// browserslist h5/pc/mini
+{
+  "browserslist": [
+    "extends @deepjs/lint"
+  ]
+}
+```
+
+### 一键接入
+
+提取配置后，项目接入已经很简单了。很显然的，这么简单的事儿好多个，也不应该手动做，我们可以通过自定义脚本实现
+
+1. 生成配置文件, 如 `.eslintrc.js` `.prettierrc.js` 等
+2. 添加辅助配置, 如 `package.json` `husky` 等相关配置
+
+```bash
+# 一键接入 类似
+npx @deepjs/lint init
+
+# 手动添加
+# package.json 添加 scripts
+npm set-script "eslint" "cross-env TIMING=1 eslint --ext .js,.jsx,.ts,.tsx --format=pretty ./src"
+npm set-script "eslint:fix" "npm run eslint -- --fix"
+npm set-script "eslint:report" "npm run eslint -- --format json --output-file ./eslint-report.json"
+npm set-script "lint-staged" "lint-staged --allow-empty"
+npm set-script "prettier" "prettier . --check"
+npm set-script "prettier:fix" "npm run prettier -- --write"
+npm set-script "prettier:diff" "npm run prettier:fix && git --no-pager diff && git checkout -- ."
+npm set-script "stylelint" "stylelint --allow-empty-input 'src/**/*.{css,less,scss,sass}'"
+npm set-script "stylelint:fix" "npm run stylelint -- --fix"
+
+npm set-script "prepare" "husky install"
+npm set-script "changelog" "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
+
+npm set-script "sort" "npx sort-package-json"
+
+# package.json 添加 config
+# https://mrm.js.org/docs/getting-started
+
+npx mrm@2 lint-staged stylelint eslint
+```
+
+自动添加如下代码
+
+```jsonc
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.css": "stylelint --fix",
+    "*.{js,css,md}": "prettier --write"
+  }
+```
 
 ## 参考文档
 
@@ -609,12 +704,14 @@ npm i --save-dev @xxx/lint eslint stylelint prettier @commitlint/cli husky lint-
 - [lint-staged](https://github.com/okonet/lint-staged)
 - [husky](https://typicode.github.io/husky/#/)
 - [commitlint](https://commitlint.js.org/)
+- [commitizen](https://github.com/streamich/git-cz)
 - [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog)
 - [conventionalcommits](https://www.conventionalcommits.org/)
 - [release-please](https://github.com/googleapis/release-please) 维护发布 PR
 - [sonarlint](https://www.sonarlint.org/)
 - [sonarqube](https://www.sonarqube.org/)
 - [markdownlint](https://github.com/DavidAnson/markdownlint)
+- [mrm](https://mrm.js.org/)
 - [Commit message 和 Change log 编写指南](https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
 
 ### 扩展阅读
