@@ -78,3 +78,9 @@ steps:
   "typecheck": "tsc -p scripts --noEmit && tsc -p playground --noEmit"
 }
 ```
+
+## jsonc vs json5
+
+`.(*.)rc`
+
+https://stackoverflow.com/questions/67978167/why-does-vs-code-allow-comments-in-json-files-within-vscode-but-not-elsewhere

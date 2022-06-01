@@ -30,7 +30,10 @@ config
 
 ```bash
 # Add a hook:
-npx husky add .husky/pre-commit "npx --no-install lint-staged"
+npx husky add .husky/pre-commit "npx --no -- lint-staged"
+# 或
+npx husky add .husky/pre-commit "npm run lint-staged"
+
 npx husky add .husky/pre-commit "npm test"
 npx husky add .husky/commit-msg 'npx --no -- commitlint --edit "${1}"' # 这个执行有问题
 yarn husky add .husky/commit-msg 'npx --no -- commitlint --edit "${1}"' # 这个可以
@@ -92,6 +95,8 @@ npm set-script prepare "husky install"
   }
 },
 ```
+
+注: `--no-install` 选项已弃用，并将转换为 `--no`
 
 在 CI/Docker/Prod 中禁用 `husky`?
 

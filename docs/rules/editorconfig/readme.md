@@ -61,7 +61,7 @@ insert_final_newline = true
 max_line_length = 120 # 在指定的字符数量后强制强行换行, off 关闭此功能
 trim_trailing_whitespace = true
 
-[*.js] # 对所有的 js 文件生效
+[*.{js,ts}] # 对所有的 js 文件生效
 # 字符串使用单引号
 quote_type = single
 

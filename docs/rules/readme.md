@@ -405,7 +405,10 @@ config
 
 ```bash
 # Add a hook:
-npx husky add .husky/pre-commit "npx --no-install lint-staged"
+npx husky add .husky/pre-commit "npx --no -- lint-staged"
+# 或
+npx husky add .husky/pre-commit "npm run lint-staged"
+
 npx husky add .husky/pre-commit "npm test"
 npx husky add .husky/commit-msg 'npx --no -- commitlint --edit $1' # 这个执行有问题
 yarn husky add .husky/commit-msg 'npx --no -- commitlint --edit "${1}"' # 这个可以
@@ -654,6 +657,8 @@ module.exports = commitlint
 提取配置后，项目接入已经很简单了。很显然的，这么简单的事儿好多个，也不应该手动做，我们可以通过自定义脚本实现
 
 1. 生成配置文件, 如 `.eslintrc.js` `.prettierrc.js` 等
+   1. 在当前项目根目录执行命令
+   2. `degit cloudyan/lint/template#feat/lint ./ -f`
 2. 添加辅助配置, 如 `package.json` `husky` 等相关配置
 
 ```bash

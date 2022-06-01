@@ -1,8 +1,8 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-# npx --no-install lint-staged
-# npx --no-install lint-staged --concurrent false
+# npx --no -- lint-staged
+# npx --no -- lint-staged --concurrent false
 npm run lint-staged
 
 npm test

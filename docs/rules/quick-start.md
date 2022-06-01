@@ -52,8 +52,12 @@ module.exports = commitlint
 
 提取配置后，项目接入已经很简单了。很显然的，这么简单的事儿好多个，也不应该手动做，我们可以通过自定义脚本实现
 
-1. 生成配置文件, 如 `.eslintrc.js` `.prettierrc.js` 等
-2. 添加辅助配置, 如 `package.json` `husky` 等相关配置
+1. 生成配置文件
+   1. 生产 `.eslintrc.js` `.prettierrc.js` 等一系列文件
+   2. 当前目录执行 `npx degit cloudyan/lint/template#feat/lint ./ -f`
+2. 添加辅助配置
+   1. 配置 `package.json`
+   2. 配置 `husky`
 
 ```bash
 # 一键接入 类似
@@ -84,11 +88,30 @@ npx mrm@2 lint-staged eslint
 `mrm` 自动添加如下代码
 
 ```jsonc
+{
   "lint-staged": {
     "*.js": "eslint --cache --fix",
     "*.css": "stylelint --fix",
     "*.{js,css,md}": "prettier --write"
   }
+}
+```
+
+添加 husky hooks 配置
+
+```bash
+# add hook pre-commit
+npx husky add .husky/pre-commit "npx --no -- lint-staged"
+# 或
+npx husky add .husky/pre-commit "npm run lint-staged"
+
+# Add hook commit-msg
+cat <<EEE > .husky/commit-msg
+#!/bin/sh
+. "\$(dirname "\$0")/_/husky.sh"
+
+npx --no -- commitlint --edit "\${1}"
+EEE
 ```
 
 ### 终极方案？

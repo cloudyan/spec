@@ -59,7 +59,9 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
-
+  "files.associations": {
+    "*.json": "jsonc"
+  },
   "eslint.workingDirectories": [{ "mode": "auto" }],
   // "eslint.options": {
   //   "overrideConfigFile": "babel.config.js"
