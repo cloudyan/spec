@@ -12,3 +12,7 @@
   - [stylelint-plus](https://marketplace.visualstudio.com/items?itemName=hex-ci.stylelint-plus)
 
 CI 流程需要接入, 但因为使用了 `list-staged`, 导致存在了复杂度。（每次 push 会包含多个 commit）
+
+## github-actions
+
+参见 .github/workflows/check.yaml

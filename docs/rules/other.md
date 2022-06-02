@@ -2,7 +2,9 @@
 
 ## yaml
 
-关于 yaml 文件扩展名, [官方](https://yaml.org/faq.html) 官方推荐我们使用 `.yaml`。
+关于 yaml 文件扩展名, [官方](https://yaml.org/faq.html) 官方文档推荐我们使用 `.yaml`。
+
+但从实践上来看，虽然都支持，但 github 和 gitlab 官方都默认选择使用 `yml`。
 
 ## opinionated vs unopinionated
 

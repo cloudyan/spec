@@ -19,45 +19,58 @@
 
 ```js
 {
-  "editor.formatOnSave": true, // 保存时自动格式化
-  "editor.defaultFormatter": "stylelint.vscode-stylelint",
-  // 保存代码时，自动修复
+  // https://github.com/microsoft/vscode-eslint#settings-migration
+  "javascript.format.enable": false, // 关闭默认js格式化程序
+  "eslint.format.enable": false, // 不用 eslint 做格式化
+  "eslint.useESLintClass": true, // 指定使用新 Engine(>8 默认)
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+  "eslint.codeAction.showDocumentation": {
+    "enable": true
+  },
+  // 保存代码时，自动修复 fix
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true, // 保存时使用eslint校验文件
+    "source.fixAll.eslint": true,
     "source.fixAll.stylelint": true
   },
 
+  "editor.formatOnSave": true, // 保存时自动格式化
 
-  // 以下待确认
-  "[css]": {
-    "editor.defaultFormatter": "stylelint.vscode-stylelint"
-  },
-  "[html]": {
-    // "editor.defaultFormatter": "HookyQR.beautify"
+  // "editor.defaultFormatter": "esbenp.prettier-vscode", // 不能全部用 prettier
+  // 需要分类处理, prettier 可以处理以下格式
+  // js,jsx, ts,tsx, json,json5, css,less,scss, pug,html
+  "[javascript,javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[javascript]": {
-    // "editor.defaultFormatter": "HookyQR.beautify"
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  // "[markdown]": {
-  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
-  // },
+
+  // typescript,typescriptreact 卸载一起保存时未生效
   "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    // "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[json,json5]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css,less,scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    // "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
+  "[pug,html]": {
+    // "editor.defaultFormatter": "HookyQR.beautify"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // vetur
+  "[vue]": {
+    "editor.defaultFormatter": "octref.vetur"
+  },
+
+  "stylelint.validate": ["css", "less", "postcss", "scss", "vue", "sass"],
 
   "files.associations": {
     "*.json": "jsonc"

@@ -2,72 +2,20 @@
 
 checkstyle 整理过程，详见 [lint example](https://github.com/cloudyan/lint-example)
 
-## 进度
-
-- 项目接入
-  - [x] project-lock
-  - [x] editorconfig
-  - [x] prettier
-  - [x] eslint
-  - [x] babel
-  - [x] stylelint
-  - [x] browserlist
-  - [x] lint-staged
-  - [x] husky
-  - [x] commitlint
-  - [x] conventional-changelog
-  - [ ] sonarlint
-  - [ ] markdownlint
-- IDE 编辑器接入
-  - vscode
-    - [x] prettier
-    - [x] eslint
-    - [x] stylelint
-- CI 流程接入
-  - github-actions
-    - [x] prettier
-    - [x] eslint
-    - [x] stylelint
-- 便捷接入
-  - [x] 提取配置
-  - [ ] 一键接入(e.g.: npx lint init)
-
-## lint 接入
+## 如何接入
 
 - 项目中如何接入
 - IDE 编辑器如何接入
 - CI 流程如何接入
+- 快捷接入
 
 集成到 vscode, webpack 以及 CI 流程上能有效保证执行落地。
 
+---
+
+[[toc]]
+
 ## 项目接入
-
-接入步骤
-
-- [lint](#lint)
-  - [进度](#进度)
-  - [lint 接入](#lint-接入)
-  - [项目接入](#项目接入)
-    - [project-lock](#project-lock)
-    - [editorconfig](#editorconfig)
-    - [prettier](#prettier)
-    - [eslint](#eslint)
-    - [babel](#babel)
-    - [stylelint](#stylelint)
-    - [browserlist](#browserlist)
-    - [lint-staged](#lint-staged)
-    - [husky](#husky)
-    - [commitlint](#commitlint)
-    - [conventional-changelog](#conventional-changelog)
-    - [sonarlint](#sonarlint)
-    - [markdownlint](#markdownlint)
-  - [IDE 编辑器接入](#ide-编辑器接入)
-  - [CI 流程接入](#ci-流程接入)
-  - [便捷接入](#便捷接入)
-    - [提取配置](#提取配置)
-    - [一键接入](#一键接入)
-  - [参考文档](#参考文档)
-    - [扩展阅读](#扩展阅读)
 
 ### project-lock
 
@@ -294,7 +242,7 @@ The config to share target browsers and Node.js versions between different front
 
 `.browserslistrc` 独立配置文件
 
-```conf
+```yaml
 # .browserslistrc
 # https://github.com/browserslist/browserslist#queries
 
@@ -553,7 +501,7 @@ npm run eslint:report
 
 在 `sonar-project.properties` 文件中或通过命令行参数设置此 Sonar 属性（其中 `eslint-report.json` 是上面生成的输出报告）
 
-```conf
+```ini
 sonar.eslint.reportPaths=eslint-report.json
 ```
 
@@ -577,6 +525,8 @@ ESLint 报告中的任何问题都将出现在标有 EsLint 徽章的 Sonar 问�
 
 这里只涉及到 vscode, 相关插件如下
 
+### vscode
+
 - prettier
   - [Prettier - Code formatter 插件](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
   - 待确认 [Prettier ESLint 插件](https://marketplace.visualstudio.com/items?itemName=rvest.vs-code-prettier-eslint)
@@ -590,18 +540,21 @@ ESLint 报告中的任何问题都将出现在标有 EsLint 徽章的 Sonar 问�
 
 ## CI 流程接入
 
-目前仅支持全量检测
+CI 流程需要接入, 因为使用了 `list-staged`, 导致存在了复杂度。（每次 push 会包含多个 commit）
 
-- prettier
-  - [Prettier - Code formatter 插件](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-  - 待确认 [Prettier ESLint 插件](https://marketplace.visualstudio.com/items?itemName=rvest.vs-code-prettier-eslint)
-- eslint
-  - [ESLint 插件](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-- stylelint (以下二选一)
-  - [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
-  - [stylelint-plus](https://marketplace.visualstudio.com/items?itemName=hex-ci.stylelint-plus)
+简单方案是仅支持全量检测
 
-CI 流程需要接入, 但因为使用了 `list-staged`, 导致存在了复杂度。（每次 push 会包含多个 commit）
+### github-actions
+
+详细参见 .github/workflows/check.yaml
+
+### gitlab-ci
+
+详细参见 .gitlab-ci.yml
+
+### 自研系统
+
+接入自研的构建部署系统流程，一般会使用 jenkins 和 docker 或 k8s 的组合。完全可以参考 github 和 gitlab 相关接入脚本实现。
 
 ## 便捷接入
 
@@ -653,6 +606,8 @@ module.exports = commitlint
 ```
 
 ### 一键接入
+
+> e.g.: npx lint init
 
 提取配置后，项目接入已经很简单了。很显然的，这么简单的事儿好多个，也不应该手动做，我们可以通过自定义脚本实现
 

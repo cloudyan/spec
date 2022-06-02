@@ -36,11 +36,16 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 7.1.7
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          # cache: pnpm # npm, yarn or pnpm
+          cache: pnpm # npm, yarn or pnpm
 
       # https://github.com/stylelint/stylelint-demo/blob/main/.github/workflows/nodejs.yml
       # - name: Get Node.js version from package.json
@@ -50,8 +55,8 @@ jobs:
       - name: Env
         run: npm version # node -v && npm -v
 
-      - name: install pnpm
-        run: npm i -g pnpm
+      # - name: install pnpm
+      #   run: npm i -g pnpm
 
       - name: Install deps
         # run: npm ci # --prefer-offline # npm ci or yarn
