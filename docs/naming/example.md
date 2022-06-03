@@ -16,7 +16,7 @@
 
    > 特此说明，增删查改，详情统一使用如下 5 个单词，不得使用其他（目的是为了统一各个端）
 
-   ```code
+   ```js
    add / update / delete / detail / get
    ```
 
@@ -28,7 +28,7 @@
 
 ## 附： 函数方法常用的动词
 
-```sql
+```js
 get 获取/set 设置,
 add 增加/remove 删除
 create 创建/destory 移除
