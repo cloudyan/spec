@@ -10,7 +10,7 @@ The config to share target browsers and Node.js versions between different front
 
 `.browserslistrc` 独立配置文件
 
-```conf
+```ini
 # .browserslistrc
 # https://github.com/browserslist/browserslist#queries
 
@@ -27,7 +27,7 @@ android >= 4.4
 
 如未查询到配置，Browserslist 将使用默认值，取值如下
 
-```conf
+```ini
 # https://github.com/browserslist/browserslist#queries
 
 > 0.5%

@@ -17,7 +17,7 @@
 
 在 `sonar-project.properties` 文件中或通过命令行参数设置此 Sonar 属性（其中 `eslint-report.json` 是上面生成的输出报告）
 
-```conf
+```yaml
 sonar.eslint.reportPaths=eslint-report.json
 ```
 
