@@ -607,9 +607,9 @@ module.exports = commitlint
 
 ### 一键接入
 
-> e.g.: npx lint init
-
 提取配置后，项目接入已经很简单了。很显然的，这么简单的事儿好多个，也不应该手动做，我们可以通过自定义脚本实现
+
+> e.g.: npx lint init
 
 1. 生成配置文件, 如 `.eslintrc.js` `.prettierrc.js` 等
    1. 在当前项目根目录执行命令
