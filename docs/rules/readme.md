@@ -2,6 +2,8 @@
 
 checkstyle 整理过程，详见 [lint example](https://github.com/cloudyan/lint-example)
 
+> NOTE: 因为一些 lint 工具对 node 版本有要求，目前至少要 14 版本。
+
 ## 如何接入
 
 - 项目中如何接入
@@ -11,9 +13,37 @@ checkstyle 整理过程，详见 [lint example](https://github.com/cloudyan/lint
 
 集成到 vscode, webpack 以及 CI 流程上能有效保证执行落地。
 
----
+目录
 
-[[toc]]
+- [lint](#lint)
+  - [如何接入](#如何接入)
+  - [项目接入](#项目接入)
+    - [project-lock](#project-lock)
+    - [editorconfig](#editorconfig)
+    - [prettier](#prettier)
+    - [eslint](#eslint)
+    - [babel](#babel)
+    - [stylelint](#stylelint)
+    - [browserlist](#browserlist)
+    - [lint-staged](#lint-staged)
+    - [husky](#husky)
+    - [commitlint](#commitlint)
+    - [conventional-changelog](#conventional-changelog)
+    - [sonarlint](#sonarlint)
+    - [markdownlint](#markdownlint)
+  - [IDE 编辑器接入](#ide-编辑器接入)
+    - [vscode](#vscode)
+  - [开发运行时接入](#开发运行时接入)
+    - [webpack 接入](#webpack-接入)
+  - [CI 流程接入](#ci-流程接入)
+    - [github-actions](#github-actions)
+    - [gitlab-ci](#gitlab-ci)
+    - [自研系统](#自研系统)
+  - [便捷接入](#便捷接入)
+    - [提取配置](#提取配置)
+    - [一键接入](#一键接入)
+  - [参考文档](#参考文档)
+    - [扩展阅读](#扩展阅读)
 
 ## 项目接入
 
@@ -536,13 +566,66 @@ ESLint 报告中的任何问题都将出现在标有 EsLint 徽章的 Sonar 问�
   - [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
   - [stylelint-plus](https://marketplace.visualstudio.com/items?itemName=hex-ci.stylelint-plus)
 
-在项目中新建配置 [`.vscode/settings.json`](./.vscode/settings.json)
+在项目中新建配置
+
+- [`.vscode/settings.json`](./.vscode/settings.json)
+- [`.vscode/extensions.json`](./.vscode/extensions.json)
+
+## 开发运行时接入
+
+### webpack 接入
+
+webpack 使用 [eslint-webpack-plugin](https://webpack.docschina.org/plugins/eslint-webpack-plugin/）（该插件使用 eslint 来查找和修复 JavaScript 代码中的问题）。
+
+> 注意: eslint-webpack-plugin 3.0 仅支持 webpack 5。对于 webpack 4 请查看 [2.x 分支](https://github.com/webpack-contrib/eslint-webpack-plugin/tree/2.x)。
+
+```js
+const ESLintPlugin = require('eslint-webpack-plugin');
+
+module.exports = {
+  // ...
+  plugins: [new ESLintPlugin({
+    fix: true,
+    extensions: ['ts', 'tsx', 'js', 'jsx'],
+  })],
+  // ...
+};
+```
+
+是 umi 项目，可以如下[配置](https://github.com/umijs/umi/issues/6155)
+
+```js
+// .umirc.js
+import ESLintPlugin from 'eslint-webpack-plugin';
+
+module.exports = {
+  chainWebpack(config) {
+    config.plugin('eslint-webpack-plugin').use(
+      new ESLintPlugin({
+        fix: true,
+        extensions: ['ts', 'tsx', 'js', 'jsx'],
+      }),
+    );
+  },
+}
+```
+
+没 webpack？可以通过 [onchange](https://www.npmjs.com/package/onchange) 进行代码的监听，然后自动格式化代码。
+
+```js
+"scripts": {
+  "format": "onchange 'src/**/*.js' -- prettier --write {{changed}}",
+  // "format": "onchange 'test/**/*.js' 'src/**/*.js' 'src/**/*.vue' -- prettier --write {{changed}}"
+}
+```
 
 ## CI 流程接入
 
-CI 流程需要接入, 因为使用了 `list-staged`, 导致存在了复杂度。（每次 push 会包含多个 commit）
+> NOTE: 全量检测目前可以支持，非全量暂时不接入
 
-简单方案是仅支持全量检测
+CI 流程是需要接入的, 但因为使用了 `lint-staged`, 导致存在了复杂度待调研。（每次 push 会包含多个 commit）
+
+实施方案思路: 通过两个 commit 对比提取差异文件，可在 CI 流程做 `lint-staged` 校验。
 
 ### github-actions
 

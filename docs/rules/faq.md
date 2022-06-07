@@ -20,7 +20,7 @@ editorconfig, prettier 与 eslint 各自都做什么，功能重叠的部分怎�
 
 - editorconfig 统一各种编辑器的配置, 处理编辑器相关配置(行尾、缩进样式、缩进距离...等)
 - prettier 专注于**代码格式化**
-  - `.{js,ts,jsx,tsx,css,less,scss,json,json5}` 以及 `.{vue,html,graphql,markdown,yml,yaml}` 等
+  - `.{js,ts,jsx,tsx,css,less,scss,json,jsonc}` 以及 `.{vue,html,graphql,markdown,yml,yaml}` 等
 - eslint 专注于**代码质量**，做语法检查、查找并修复 JavaScript 代码中的问题（格式化的事儿，让 Prettier 来做）
   - 针对 `.{js,ts,jsx,tsx}` 以及 `.{vue,html,md}` 中的脚本
 
@@ -109,7 +109,11 @@ prettier 支持自动推断解析器，所以无需手动配置。更多参考 <
 
 ## eslint 如何在本地开发运行时中卡点（webpack?）
 
-webpack 是通过引入 eslint-loader 来启动 eslint 的
+webpack 是通过引入 [eslint-loader](https://www.npmjs.com/package/eslint-loader) 来启动 eslint 的。
+
+> This loader has been deprecated. Please use eslint-webpack-plugin
+>
+> `eslint-loader` 已经废弃，官方推荐使用 `eslint-webpack-plugin`
 
 ```js
 const path = require('path')
@@ -126,6 +130,41 @@ module.exports = {
         }
       }
     ]
+}
+```
+
+webpack 使用 [eslint-webpack-plugin](https://webpack.docschina.org/plugins/eslint-webpack-plugin/）（该插件使用 eslint 来查找和修复 JavaScript 代码中的问题）。
+
+> 注意: eslint-webpack-plugin 3.0 仅支持 webpack 5。对于 webpack 4 请查看 [2.x 分支](https://github.com/webpack-contrib/eslint-webpack-plugin/tree/2.x)。
+
+```js
+const ESLintPlugin = require('eslint-webpack-plugin');
+
+module.exports = {
+  // ...
+  plugins: [new ESLintPlugin({
+    fix: true,
+    extensions: ['ts', 'tsx', 'js', 'jsx'],
+  })],
+  // ...
+};
+```
+
+是 umi 项目，可以如下[配置](https://github.com/umijs/umi/issues/6155)
+
+```js
+// .umirc.js
+import ESLintPlugin from 'eslint-webpack-plugin';
+
+module.exports = {
+  chainWebpack(config) {
+    config.plugin('eslint-webpack-plugin').use(
+      new ESLintPlugin({
+        fix: true,
+        extensions: ['ts', 'tsx', 'js', 'jsx'],
+      }),
+    );
+  },
 }
 ```
 

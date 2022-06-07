@@ -50,3 +50,6 @@
 参考文档
 
 - https://mp.weixin.qq.com/s/YgaYLyqCJQ-bXoA5F5ygxg
+- https://r.bluethl.net/how-to-design-better-apis
+- https://slack.engineering/how-we-design-our-apis-at-slack/
+- https://quastor.substack.com/p/tech-dive-apis?s=r
