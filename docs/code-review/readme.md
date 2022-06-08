@@ -26,13 +26,14 @@
 5. 这个函数或类是否**太大**？ 如果是，函数或类是否有太多职责？
 6. 如果您觉得上述任何问题的答案都不令人满意，那么您可以建议/建议代码更改。
 
-## 其他
+## 术语解释
 
 部分文档中会用到一些谷歌内部的术语，特在此说明:
 
 - `CL`: "changelist"的缩写，代表已经进入版本控制软件或者正在进行代码评审的变更。其他组织经常称为"change"或者"patch"。
-- `LGTM`: "Looks Good to Me."的缩写，评审者批准CL时会这么说。
-
+- `LGTM`: "Looks Good to Me." 的首字母缩写词，通常用作查看某人的文章、代码或设计文档后的快速回复。
+  - 评审者批准CL时会这么说。
+  - LGTM, dude. You can go ahead and push this craxy code to the prod server.
 
 参考：
 

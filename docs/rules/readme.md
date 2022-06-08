@@ -188,6 +188,8 @@ module.exports = {
 # 初始化配置
 npm init @eslint/config
 # 选择: To check syntax and find problems
+
+# npm init [<@scope>/]<name> 等同于 npx [<@scope>/]create-<name>
 ```
 
 配置具体参见 [`.eslintrc.js`](./.eslintrc.js)

@@ -86,3 +86,22 @@ steps:
 `.(*.)rc`
 
 https://stackoverflow.com/questions/67978167/why-does-vs-code-allow-comments-in-json-files-within-vscode-but-not-elsewhere
+
+## npx vs npm
+
+npm 从5.2版开始，增加了 npx 命令。npx 想要解决的主要问题，就是调用项目内部安装的模块。
+
+- npx 从本地或远程 npm 包运行命令。近似 `npm run`
+- npm javascript 包管理器。you use it to publish, discover, install, and develop node programs.
+
+npx 的原理很简单，就是运行的时候，会到node_modules/.bin路径和环境变量$PATH里面，检查命令是否存在。
+
+参考:
+
+- 参看 npm 官方文档了解更多 https://docs.npmjs.com/cli/v8/commands/npx
+- https://www.ruanyifeng.com/blog/2019/02/npx.html
+
+## 双连字符
+
+"--" 用于标记选项的结束，因此是参数的开始。它告诉命令将其后的所有内容视为参数而不是选项，即使某些内容看起来像选项。
+
