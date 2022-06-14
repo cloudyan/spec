@@ -105,3 +105,12 @@ npx 的原理很简单，就是运行的时候，会到node_modules/.bin路径�
 
 "--" 用于标记选项的结束，因此是参数的开始。它告诉命令将其后的所有内容视为参数而不是选项，即使某些内容看起来像选项。
 
+## broken-link-checker
+
+Find broken links, missing images, etc within your HTML.
+
+https://github.com/stevenvachon/broken-link-checker
+
+## .gitignore
+
+怎么复用 .gitignore 替代 .eslintignore .prettierignore 以及 .prettierignore

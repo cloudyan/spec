@@ -2,7 +2,22 @@
 
 checkstyle 整理过程，详见 [lint example](https://github.com/cloudyan/lint-example)
 
-> NOTE: 因为一些 lint 工具对 node 版本有要求，目前至少要 14 版本。
+> NOTE: 因为一些 lint 工具对 node 版本有要求，综合考虑至少要 14 版本，建议直接升级到 16。
+
+- node [LST 状态](https://nodejs.org/en/about/releases/)
+  - 当前 2022-06-14, node@10 node@12 LTS 已经结束
+- [prettier@2](https://prettier.io/blog/2020/03/21/2.0.0.html)
+  - node 不再支持 `@10`
+- [`eslint@8`](https://eslint.org/docs/8.0.0/user-guide/migrating-to-8.0.0)
+  - 要求 node 为 LTS，且版本 >= `12.22`, `14` 或 `16`
+- [`stylelint@14`](https://stylelint.io/migration-guide/to-14/)
+  - 要求 node >= `12.20.0`、`14.13.1` 或 `16.0.0`
+- `lint-staged@12` 纯 ESM 模块
+  - 要求 node >= `12.20.0`、`14.13.1` 或 `16.0.0`
+- `lint-staged@13`
+  - 要求 node >= `14.13.1` 或 `16.0.0`
+- [`husky@8`](https://typicode.github.io/husky/#/?id=features)
+  - 依赖 `core.hooksPath`, 要求 git [`2.9+`](https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.9.0.txt)
 
 ## 如何接入
 
