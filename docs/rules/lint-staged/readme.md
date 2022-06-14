@@ -98,3 +98,40 @@ yarn pretty-quick --staged
 因为 eslint-loader 是保存的时候进行检测，如果项目 lint 没通过，无法正常开发，此时开启 lint-staged 没有什么意义。
 
 所以二选一, 保存时候检测 OR commit 前自动格式化+检测
+
+
+### 扩展阅读
+
+lint-staged
+
+--diff 默认情况下，对所有暂存于 git 的文件进行过滤，生成自git diff --staged.
+
+`--diff="branch1...branch2"`
+
+我可以lint-staged在 CI 中运行，还是在没有暂存文件的情况下运行？
+
+默认情况下，lint-staged 仅针对在 git 中暂存文件运行检查，在 git pre-commit 钩子期间运行。其实，lint-staged 也可以覆盖此默认行为并针对特定差异中的文件运行，例如两个不同分支之间的所有更改文件。
+
+如果您想在 CI 中运行lint-staged，也许您可​​以将其设置为将Pull Request / Merge Request中的分支与目标分支进行比较。
+
+```bash
+# 打印 main 和 dev 分支之间添加、更改、修改或重命名的文件列表
+git diff --diff-filter=ACMR --name-only main...dev
+
+# 我们可以如下使用
+npx lint-staged --diff="master...feature/my-branch"
+```
+
+参考：
+
+- https://git-scm.com/docs/git-diff
+- https://git-scm.com/docs/gitrevisions
+- https://github.com/micromatch/micromatch
+- [lint-staged 如何做到只 lint staged?](https://juejin.cn/post/6844903864722784264)
+
+## How can I ignore files from .eslintignore?
+
+ESLint throws out `warning File ignored because of a matching ignore pattern. Use "--no-ignore" to override` warnings that breaks the linting process ( if you used `--max-warnings=0` which is recommended ).
+
+遇到此问题，参考官方文档即可
+
