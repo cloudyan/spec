@@ -1,1 +1,0 @@
-import{_ as e,c as r,o as t,a as i}from"./app.a721e852.js";const w=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"best/code-review/temp.md","lastUpdated":1655734594000}'),o={name:"best/code-review/temp.md"},a=i("",4),n=[a];function l(c,h,f,s,p,d){return t(),r("div",null,n)}var g=e(o,[["render",l]]);export{w as __pageData,g as default};
