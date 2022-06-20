@@ -55,8 +55,8 @@ jobs:
       - name: Env
         run: npm version # node -v && npm -v
 
-      # - name: install pnpm
-      #   run: npm i -g pnpm
+      - name: install pnpm
+        run: npm i -g pnpm
 
       - name: Install deps
         # run: npm ci # --prefer-offline # npm ci or yarn
