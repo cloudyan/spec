@@ -45,7 +45,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: pnpm # npm, yarn or pnpm
+          # cache: pnpm # npm, yarn or pnpm
 
       # https://github.com/stylelint/stylelint-demo/blob/main/.github/workflows/nodejs.yml
       # - name: Get Node.js version from package.json
