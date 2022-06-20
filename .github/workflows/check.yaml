@@ -94,5 +94,6 @@ jobs:
       - name: Test
         run: npm test
 
+      # deploy site
       - name: Build
         run: npm run build
