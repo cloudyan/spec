@@ -65,11 +65,18 @@ glob-pattern 文章参考
 
 也可以使用 [pretty-quick](https://github.com/azz/pretty-quick#readme) 来替代 `lint-staged`。
 
+区别：
+
+- `pretty-quick` 是在 git commit 之前，**先到暂存区配合prettier进行代码格式化，然后重新add到暂存区**。
+- `lint-staged` 是对暂存区的代码进行 lint，执行文件对应的格式化配置。
+
 ```bash
 # pre-commit
 
-yarn pretty-quick --staged
+npx pretty-quick --staged
 ```
+
+- `--staged`: 这个配置是告诉 linter 只在 git 阶段生效
 
 ### 其他项目
 
@@ -97,12 +104,11 @@ yarn pretty-quick --staged
 
 因为 eslint-loader 是保存的时候进行检测，如果项目 lint 没通过，无法正常开发，此时开启 lint-staged 没有什么意义。
 
-所以二选一, 保存时候检测 OR commit 前自动格式化+检测
+可以二选一, 保存时候检测 OR commit 前自动格式化+检测
 
+其实，两者都开启，甚至同时也接入运行时 lint 检查，也没什么不可以的。
 
-### 扩展阅读
-
-lint-staged
+### lint-staged 接入 CI
 
 --diff 默认情况下，对所有暂存于 git 的文件进行过滤，生成自git diff --staged.
 
@@ -115,12 +121,18 @@ lint-staged
 如果您想在 CI 中运行lint-staged，也许您可​​以将其设置为将Pull Request / Merge Request中的分支与目标分支进行比较。
 
 ```bash
+git diff main... --name-only -- '*.ts'
+
 # 打印 main 和 dev 分支之间添加、更改、修改或重命名的文件列表
 git diff --diff-filter=ACMR --name-only main...dev
 
 # 我们可以如下使用
 npx lint-staged --diff="master...feature/my-branch"
 ```
+
+关于 `--diff-filter=[(A|C|D|M|R|T|U|X|B)…​[*]]`
+
+添加A，复制C，删除D，修改M，重命名R，类型更改T，未合并U，未知X，配对已损坏B，使用小写字母时，用以排除。
 
 参考：
 
@@ -129,7 +141,9 @@ npx lint-staged --diff="master...feature/my-branch"
 - https://github.com/micromatch/micromatch
 - [lint-staged 如何做到只 lint staged?](https://juejin.cn/post/6844903864722784264)
 
-## How can I ignore files from .eslintignore?
+## 问题
+
+### How can I ignore files from .eslintignore?
 
 ESLint throws out `warning File ignored because of a matching ignore pattern. Use "--no-ignore" to override` warnings that breaks the linting process ( if you used `--max-warnings=0` which is recommended ).
 

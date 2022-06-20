@@ -17,12 +17,12 @@ hero:
       link: /guide/
 
 features:
-  - title: 代码风格
+  - title: 编码规范
     details: 代码是写给人看的，项目的可维护性排第一位。
-  - title: 命名规范
-    details: 使用英语, 选择一种命名约定并遵循它。
-  - title: Lint接入
-    details: 使用工具自动检测，并尽可能无感修复。
-  - title: 代码评审
-    details: 代码审查仍然是公司提高代码质量可以做的第一件事。
+  - title: 最佳实践
+    details: 长期积累的最佳实践，集体经验的结晶。
+  - title: 工程化
+    details: 面向未来，工程化、自动化。
+  - title: 工具箱
+    details: 便捷高效，以一敌百。
 ---

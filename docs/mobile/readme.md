@@ -58,6 +58,8 @@
     - [fixed 与 input](#fixed-与-input)
     - [input 的 compositionstart 和 compositionend 事件](#input-的-compositionstart-和-compositionend-事件)
     - [iPhone X 系列安全区域适配问题](#iphone-x-系列安全区域适配问题)
+    - [关闭 iOS 键盘首字母自动大写](#关闭-ios-键盘首字母自动大写)
+    - [关闭 iOS 输入自动修正](#关闭-ios-输入自动修正)
     - [页面生成为图片和二维码问题](#页面生成为图片和二维码问题)
       - [生成二维码](#生成二维码)
       - [生成图片](#生成图片)
@@ -230,7 +232,7 @@ inputElement.addEventListener('input', function(event) {
 - `viewport-fit` iOS11 新增特性(默认: `contain`)
   - 苹果公司为了适配 iPhoneX 对现有 viewport meta 标签的一个扩展
   - `<meta name="viewport" content="width=device-width, viewport-fit=cover">`
-- 注意：env() 跟 constant() 需要同时存在，而且顺序不能换。
+- 注意: `env()` 跟 `constant()` 需要同时存在，而且顺序不能换。
 
 ```css
 padding-bottom: constant(safe-area-inset-bottom); /* 兼容 iOS < 11.2 */
@@ -241,6 +243,26 @@ padding-bottom: env(safe-area-inset-bottom); /* 兼容 iOS >= 11.2 */
 
 - https://jelly.jd.com/article/6006b1055b6c6a01506c87fd
 - 出处: https://webkit.org/blog/7929/designing-websites-for-iphone-x/
+- [iOS 11 及 iPhone X 爬坑姿势](https://s1nker.github.io/2018/01/31/hack-ios-11-n-iphone-X/)
+- 扩展阅读: [借助CSS Shapes实现元素滚动自动环绕iPhone X的刘海](https://www.zhangxinxu.com/wordpress/2017/09/css-shapes-outside-iphone-x-head/)
+- 兼容问题: iOS 10 报错 [`Viewport argument key "viewport-fit" not recognized and ignored.`](https://github.com/RicoLiu/Blog/issues/17)
+  - viewport-fit to only be added for iOS 11+ devices
+
+### 关闭 iOS 键盘首字母自动大写
+
+iOS 默认英文输入法状态下，首字母是自动大写的
+
+```html
+<input type="text" autocapitalize="off" />
+```
+
+### 关闭 iOS 输入自动修正
+
+和英文输入默认自动首字母大写那样，IOS还做了一个功能，默认输入法会开启自动修正输入内容，这样的话，用户经常要操作两次。
+
+```html
+<input type="text" autocorrect="off" />
+```
 
 ### 页面生成为图片和二维码问题
 
@@ -372,14 +394,14 @@ iOS Safari ( Android 或其他浏览器不会) 会自动识别看起来像电话
 
 #### 邮箱地址的识别
 
-在 Android （ iOS 不会）上，浏览器会自动识别看起来像邮箱地址的字符串，不论有你没有加上邮箱链接，当你在这个字符串上长按，会弹出发邮件的提示。
+在 Android（ iOS 不会）上，浏览器会自动识别看起来像邮箱地址的字符串，不论有你没有加上邮箱链接，当你在这个字符串上长按，会弹出发邮件的提示。
 
 ```html
 <!-- 关闭邮箱地址识别： -->
 <meta name="format-detection" content="email=no" />
 
 <!-- 开启邮件发送： -->
-<a mailto:>mobile@gmail.com">mobile@gmail.com</a>
+<a href="mailto:mobile@gmail.com">mobile@gmail.com</a>
 ```
 
 #### 指定 iOS 的 safari 顶端状态条的样式

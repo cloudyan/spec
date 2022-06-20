@@ -1,5 +1,10 @@
 # 通用约定
 
+- 通用约定
+  - 注释
+  - 命名
+- 性能优化
+
 ## 注释
 
 ### 原则
@@ -152,33 +157,33 @@ loadingData.then(callback);
 2. 尽量不与 jQuery 社区已有的习惯冲突；
 3. 尽量写全。不用缩写，除非是下面列表中约定的；（变量以表达清楚为目标，uglify 会完成压缩体积工作）
 
-| 常用词         | 说明                                                     |
-| -------------- | -------------------------------------------------------- |
+| 常用词         | 说明                                                   |
+|----------------|------------------------------------------------------|
 | options        | 表示选项，与 jQuery 社区保持一致，不要用 config, opts 等 |
-| active         | 表示当前，不要用 current 等                              |
-| index          | 表示索引，不要用 idx 等                                  |
-| trigger        | 触点元素                                                 |
-| triggerType    | 触发类型、方式                                           |
-| context        | 表示传入的 this 对象                                     |
-| object         | 推荐写全，不推荐简写为 o, obj 等                         |
-| element        | 推荐写全，不推荐简写为 el, elem 等                       |
-| length         | 不要写成 len, l                                          |
-| prev           | previous 的缩写                                          |
-| next           | next 下一个                                              |
-| constructor    | 不能写成 ctor                                            |
-| easing         | 示动画平滑函数                                           |
-| min            | minimize 的缩写                                          |
-| max            | maximize 的缩写                                          |
-| DOM            | 不要写成 dom, Dom                                        |
-| .hbs           | 使用 hbs 后缀表示模版                                    |
-| btn            | button 的缩写                                            |
-| link           | 超链接                                                   |
-| title          | 主要文本                                                 |
+| active         | 表示当前，不要用 current 等                             |
+| index          | 表示索引，不要用 idx 等                                 |
+| trigger        | 触点元素                                               |
+| triggerType    | 触发类型、方式                                          |
+| context        | 表示传入的 this 对象                                   |
+| object         | 推荐写全，不推荐简写为 o, obj 等                        |
+| element        | 推荐写全，不推荐简写为 el, elem 等                      |
+| length         | 不要写成 len, l                                        |
+| prev           | previous 的缩写                                        |
+| next           | next 下一个                                            |
+| constructor    | 不能写成 ctor                                          |
+| easing         | 示动画平滑函数                                         |
+| min            | minimize 的缩写                                        |
+| max            | maximize 的缩写                                        |
+| DOM            | 不要写成 dom, Dom                                      |
+| .hbs           | 使用 hbs 后缀表示模版                                  |
+| btn            | button 的缩写                                          |
+| link           | 超链接                                                 |
+| title          | 主要文本                                               |
 | img            | 图片路径（img 标签 src 属性）                            |
-| dataset        | html5 data-xxx 数据接口                                  |
-| theme          | 主题                                                     |
-| className      | 类名                                                     |
-| classNameSpace | class 命名空间                                           |
+| dataset        | html5 data-xxx 数据接口                                |
+| theme          | 主题                                                   |
+| className      | 类名                                                   |
+| classNameSpace | class 命名空间                                         |
 
 #### True 和 False 布尔表达式
 

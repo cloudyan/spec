@@ -1,42 +1,16 @@
 # Naming
 
-在编程工作中，命名是一件让很多开发者都头疼的事情。国外曾经有个一次关于程序员最难任务的投票调查，结果命名占了 49%。
+> 使用英语, 选择一种命名约定并遵循它。
 
-![paogrammers-hardest-tasks](../assets/img/paogrammers-hardest-tasks.webp)
+在编程工作中，命名是一件让很多开发者都头疼的事情。国外曾经有个关于程序员最难任务的投票调查，结果命名占了 49%。
+
+![paogrammers-hardest-tasks](../../assets/img/paogrammers-hardest-tasks.webp =400x400)
 
 一个好的变量或函数命名，应该能起到自解释的作用，甚至能减少我们代码的注释。
 
 # Naming cheatsheet
 
-- [Naming](#naming)
-- [Naming cheatsheet](#naming-cheatsheet)
-  - [使用英语](#使用英语)
-  - [命名约定](#命名约定)
-  - [SID 原则](#sid-原则)
-  - [避免过度的简写](#避免过度的简写)
-  - [避免上下文重复](#避免上下文重复)
-  - [反映预期结果](#反映预期结果)
-  - [函数命名](#函数命名)
-  - [A/HC/LC 模式](#ahclc-模式)
-  - [动作](#动作)
-    - [`get`](#get)
-    - [`set`](#set)
-    - [`reset`](#reset)
-    - [`fetch`](#fetch)
-    - [`remove`](#remove)
-    - [`delete`](#delete)
-    - [`compose`](#compose)
-    - [`handle`](#handle)
-  - [上下文](#上下文)
-  - [前缀](#前缀)
-    - [`is`](#is)
-    - [`has`](#has)
-    - [`should`](#should)
-    - [`min`/`max`](#minmax)
-    - [`prev`/`next`](#prevnext)
-  - [单复数](#单复数)
-
----
+[[toc]]
 
 命名是一件很困难的事情，[naming-cheatsheet](https://github.com/kettanaito/naming-cheatsheet) 是一个命名备忘录，记录一些常见的规范约定，试图让命名变得更容易。接下来我们就来介绍下 naming-cheatsheet 提到的一些规范约定。
 
@@ -151,7 +125,7 @@ prefix? + action (A) + high context (HC) + low context? (LC)
 Take a look at how this pattern may be applied in the table below.
 
 | Name                   | Prefix   | Action (A) | High context (HC) | Low context (LC) |
-| ---------------------- | -------- | ---------- | ----------------- | ---------------- |
+|------------------------|----------|------------|-------------------|------------------|
 | `getUser`              |          | `get`      | `User`            |                  |
 | `getUserMessages`      |          | `get`      | `User`            | `Messages`       |
 | `handleClickOutside`   |          | `handle`   | `Click`           | `Outside`        |

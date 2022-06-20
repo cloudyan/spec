@@ -9,72 +9,84 @@ const guide = [
 const codingStyle = [
   {
     text: '介绍',
-    collapsible: true,
-    items: [{ text: '为什么需要?', link: '/coding-style/why' }],
-  },
-  {
-    text: 'HTML',
-    collapsible: true,
+    // collapsible: true,
     items: [
-      { text: '通用约定', link: '/coding-style/html/general' },
-      { text: 'HEAD', link: '/coding-style/html/head' },
-      { text: '语义化', link: '/coding-style/html/semantic' },
+      { text: '规范说明', link: '/coding-style/readme' },
+      { text: '命名规范', link: '/coding-style/naming/readme' },
     ],
   },
   {
-    text: 'CSS',
-    collapsible: true,
+    text: '编码规范',
+    // collapsible: true,
     items: [
-      { text: '通用约定', link: '/coding-style/css/general' },
-      { text: 'CSS性能', link: '/coding-style/css/performance' },
-      { text: 'Less', link: '/coding-style/css/less' },
-      { text: 'Scss', link: '/coding-style/css/scss' },
+      { text: 'HTML 规范', link: '/coding-style/html/readme' },
+      { text: 'CSS 规范', link: '/coding-style/css/readme' },
+      { text: 'JavaScript 规范', link: '/coding-style/javascript/readme' },
+      { text: 'TypeScript 规范', link: '/coding-style/typescript/readme' },
+      { text: 'Node.js 规范', link: '/coding-style/nodejs/readme' },
+      { text: 'React 规范', link: '/coding-style/react/readme' },
+      { text: 'Vue 规范', link: 'https://eslint.vuejs.org/' },
     ],
   },
   {
-    text: 'JavaScript',
-    collapsible: true,
+    text: '其他',
+    // collapsible: true,
     items: [
-      { text: '通用约定', link: '/coding-style/javascript/general' },
-      { text: 'JS性能', link: '/coding-style/javascript/performance' },
-      { text: 'jQuery', link: '/coding-style/javascript/jquery' },
+      { text: 'Image', link: '/coding-style/image/readme' },
+      { text: 'Icon', link: '/coding-style/icon/readme' },
+    ],
+  },
+]
+
+const best = [
+  {
+    text: '介绍',
+    // collapsible: true,
+    items: [{ text: '工程实践', link: '/best/readme' }],
+  },
+  {
+    text: '代码评审',
+    // collapsible: true,
+    items: [
+      { text: '为什么代码审查很重要?', link: '/best/code-review/readme' },
+      { text: 'checklist', link: '/best/code-review/checklist' },
     ],
   },
   {
-    text: 'TypeScript',
-    collapsible: true,
-    items: [{ text: '通用约定', link: '/coding-style/typescript/readme' }],
-  },
-  {
-    text: 'React',
-    collapsible: true,
-    items: [{ text: 'JSX', link: '/coding-style/react/jsx' }],
-  },
-  {
-    text: 'Vue',
-    collapsible: true,
-    items: [{ text: '官方规范', link: 'https://eslint.vuejs.org/' }],
-  },
-  {
-    text: 'Image',
-    collapsible: true,
+    text: 'Git 流程',
     items: [
-      { text: '图片格式', link: '/coding-style/image/format' },
-      { text: '图片引入', link: '/coding-style/image/import' },
+      { text: 'Git 工作流', link: '/best/git/workflow' },
+      { text: 'Commit Msg', link: '/best/git/readme' },
     ],
+  },
+  {
+    text: '文档',
+    items: [{ text: '文档书写最佳实践', link: '/best/docs/readme' }],
+  },
+  {
+    text: 'ChangeLog',
+    items: [{ text: '更新日志', link: '/best/changelog/readme' }],
+  },
+]
+
+const engineering = [
+  {
+    text: '介绍',
+    // collapsible: true,
+    items: [{ text: '工程化', link: '/engineering/readme' }],
   },
 ]
 
 export default {
   guide,
-  // codingStyle,
-  // naming: guide,
+  codingStyle,
   // mobile: guide,
-  // codeReview: guide,
+  best,
+  engineering,
   rules: [
     {
       text: '项目接入',
-      collapsible: true,
+      // collapsible: true,
       items: [
         { text: 'project-lock', link: '/rules/readme#project-lock' },
         { text: 'editorconfig', link: '/rules/readme#editorconfig' },
@@ -92,21 +104,21 @@ export default {
     },
     {
       text: 'IDE 编辑器接入',
-      collapsible: true,
+      // collapsible: true,
       items: [{ text: 'vscode', link: '/rules/readme#vscode' }],
     },
     {
       text: 'CI 流程接入',
-      collapsible: true,
+      // collapsible: true,
       items: [
-        { text: 'github-actions', link: '/rules/readme#github-actions' },
-        { text: 'gitlab-ci', link: '/rules/readme#gitlab-ci' },
+        { text: 'github', link: '/rules/readme#github' },
+        { text: 'gitlab', link: '/rules/readme#gitlab' },
         { text: '自研系统', link: '/rules/readme#自研系统' },
       ],
     },
     {
       text: '便捷接入',
-      collapsible: true,
+      // collapsible: true,
       items: [
         { text: '提取配置', link: '/rules/readme#提取配置' },
         { text: '一键接入', link: '/rules/readme#一键接入' },

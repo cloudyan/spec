@@ -1,23 +1,18 @@
 # lint
 
-checkstyle 整理过程，详见 [lint example](https://github.com/cloudyan/lint-example)
+> 使用工具自动检测，并尽可能无感修复。
 
-> NOTE: 因为一些 lint 工具对 node 版本有要求，综合考虑至少要 14 版本，建议直接升级到 16。
+Lint 接入(checkstyle)整理过程，详见 [lint example](https://github.com/cloudyan/lint-example)
 
-- node [LST 状态](https://nodejs.org/en/about/releases/)
-  - 当前 2022-06-14, node@10 node@12 LTS 已经结束
-- [prettier@2](https://prettier.io/blog/2020/03/21/2.0.0.html)
-  - node 不再支持 `@10`
-- [`eslint@8`](https://eslint.org/docs/8.0.0/user-guide/migrating-to-8.0.0)
-  - 要求 node 为 LTS，且版本 >= `12.22`, `14` 或 `16`
-- [`stylelint@14`](https://stylelint.io/migration-guide/to-14/)
-  - 要求 node >= `12.20.0`、`14.13.1` 或 `16.0.0`
-- `lint-staged@12` 纯 ESM 模块
-  - 要求 node >= `12.20.0`、`14.13.1` 或 `16.0.0`
-- `lint-staged@13`
-  - 要求 node >= `14.13.1` 或 `16.0.0`
-- [`husky@8`](https://typicode.github.io/husky/#/?id=features)
-  - 依赖 `core.hooksPath`, 要求 git [`2.9+`](https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.9.0.txt)
+**NOTE:** 因为一些 lint 工具对 node 版本有要求，综合考虑至少要 14 版本，建议直接升级到 16。
+
+- 当前 2022-06-14 node@10 node@12 [LTS](https://nodejs.org/en/about/releases/) 已经结束
+- [`prettier@2`](https://prettier.io/blog/2020/03/21/2.0.0.html) 要求 node > `10`
+- [`eslint@8`](https://eslint.org/docs/8.0.0/user-guide/migrating-to-8.0.0) 要求 node 为 LTS，且版本 >= `12.22`, `14` 或 `16`
+- [`stylelint@14`](https://stylelint.io/migration-guide/to-14/) 要求 node >= `12.20.0`、`14.13.1` 或 `16.0.0`
+- [`lint-staged@12`](https://github.com/okonet/lint-staged#changelog) 纯 ESM 模块，要求 node >= `12.20.0`、`14.13.1` 或 `16.0.0`
+  - `lint-staged@13` 不再支持 node@12，要求 node >= `14.13.1` 或 `16.0.0`
+- [`husky@8`](https://typicode.github.io/husky/#/?id=features) 依赖 `core.hooksPath`, 要求 git [`2.9+`](https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.9.0.txt)
 
 ## 如何接入
 
@@ -51,8 +46,8 @@ checkstyle 整理过程，详见 [lint example](https://github.com/cloudyan/lint
   - [开发运行时接入](#开发运行时接入)
     - [webpack 接入](#webpack-接入)
   - [CI 流程接入](#ci-流程接入)
-    - [github-actions](#github-actions)
-    - [gitlab-ci](#gitlab-ci)
+    - [github](#github)
+    - [gitlab](#gitlab)
     - [自研系统](#自研系统)
   - [便捷接入](#便捷接入)
     - [提取配置](#提取配置)
@@ -644,11 +639,11 @@ CI 流程是需要接入的, 但因为使用了 `lint-staged`, 导致存在了�
 
 实施方案思路: 通过两个 commit 对比提取差异文件，可在 CI 流程做 `lint-staged` 校验。
 
-### github-actions
+### github
 
 详细参见 .github/workflows/check.yaml
 
-### gitlab-ci
+### gitlab
 
 详细参见 .gitlab-ci.yml
 

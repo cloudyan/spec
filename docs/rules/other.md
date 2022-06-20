@@ -114,3 +114,5 @@ https://github.com/stevenvachon/broken-link-checker
 ## .gitignore
 
 怎么复用 .gitignore 替代 .eslintignore .prettierignore 以及 .prettierignore
+
+有些问题，各个文件内容并不一致。

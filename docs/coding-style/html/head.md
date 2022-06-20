@@ -88,8 +88,8 @@
 
 ```html
 <title>Style Guide</title>
-<meta name="keywords" content="your keywords" />
 <meta name="description" content="your description" />
+<meta name="keywords" content="your keywords" />
 <meta name="author" content="author,email address" />
 ```
 
@@ -128,7 +128,7 @@
 
 ## favicon
 
-此项容易被忽略, 即使不配置，默认浏览器仍然会发送此请求.
+快捷图标（也称为网站图标）嵌入在 HTML 中。此项容易被忽略, 即使不配置，默认浏览器仍然会发送此请求.
 
 在未指定 favicon 时，大多数浏览器会请求 Web Server 根目录下的 favicon.ico 。为了保证 favicon 可访问，避免 404，必须遵循以下两种方法之一：
 
@@ -141,6 +141,10 @@
 <!-- 或 -->
 <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico" />
 ```
+
+`rel="shortcut icon"` vs `rel="icon"`?
+
+曾经是 `shortcut icon`, 现在是 `icon`。更多参见[HTML 规范](https://html.spec.whatwg.org/multipage/links.html#rel-icon)。由于历史原因，`icon`关键字前面可能有关键字 `shortcut`。如果存在 `shortcut` 关键字，则rel属性的整个值必须是不区分大小写的 ASCII 字符串。
 
 ## HEAD 模板
 
