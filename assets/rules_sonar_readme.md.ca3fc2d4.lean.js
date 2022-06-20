@@ -1,1 +1,0 @@
-import{_ as e,c as s,o as n,a}from"./app.deb95cdf.js";const m=JSON.parse('{"title":"sonar","description":"","frontmatter":{},"headers":[],"relativePath":"rules/sonar/readme.md","lastUpdated":1654234300000}'),o={name:"rules/sonar/readme.md"},r=a("",12),t=[r];function p(l,i,c,d,u,_){return n(),s("div",null,t)}var S=e(o,[["render",p]]);export{m as __pageData,S as default};

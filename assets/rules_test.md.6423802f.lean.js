@@ -1,0 +1,1 @@
+import{_ as s,c as n,o as a,a as l}from"./app.82147080.js";const A=JSON.parse('{"title":"\u6D4B\u8BD5\u4EE3\u7801","description":"","frontmatter":{},"headers":[],"relativePath":"rules/test.md","lastUpdated":1653911881000}'),p={name:"rules/test.md"},o=l("",9),e=[o];function t(c,r,D,y,F,C){return a(),n("div",null,e)}var d=s(p,[["render",t]]);export{A as __pageData,d as default};
