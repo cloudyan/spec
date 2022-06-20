@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as e,a as n}from"./app.cae277e4.js";const y=JSON.parse('{"title":"babel","description":"","frontmatter":{},"headers":[],"relativePath":"rules/babel.md","lastUpdated":1653911881000}'),l={name:"rules/babel.md"},p=n("",5),o=[p];function t(c,r,b,i,d,_){return e(),a("div",null,o)}var F=s(l,[["render",t]]);export{y as __pageData,F as default};

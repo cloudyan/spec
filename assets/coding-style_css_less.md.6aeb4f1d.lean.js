@@ -1,1 +1,0 @@
-import{_ as s,c as a,o as n,a as l}from"./app.82147080.js";const C=JSON.parse('{"title":"LESS","description":"","frontmatter":{},"headers":[],"relativePath":"coding-style/css/less.md","lastUpdated":1653911881000}'),p={name:"coding-style/css/less.md"},e=l("",16),o=[e];function c(t,r,i,D,y,F){return n(),a("div",null,o)}var A=s(p,[["render",c]]);export{C as __pageData,A as default};
