@@ -1,0 +1,1 @@
+import{_ as e,c as r,o as t,a}from"./app.a721e852.js";const m=JSON.parse('{"title":"\u5DE5\u5177\u7BB1","description":"","frontmatter":{},"headers":[],"relativePath":"tools/readme.md","lastUpdated":1642501420000}'),n={name:"tools/readme.md"},o=a("",2),l=[o];function i(s,_,c,h,d,p){return t(),r("div",null,l)}var u=e(n,[["render",i]]);export{m as __pageData,u as default};
