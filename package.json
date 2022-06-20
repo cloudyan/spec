@@ -22,6 +22,7 @@
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
     "serve": "vitepress serve docs",
+    "deploy": "npx gh-pages -d ./docs/.vitepress/dist",
     "preinstall": "npx only-allow pnpm",
     "alex": "npx alex .",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
