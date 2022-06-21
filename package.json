@@ -20,6 +20,7 @@
   },
   "scripts": {
     "dev": "vitepress dev docs",
+    "prebuild": "test \"$CI\" = true && npx pnpm install -r --store=node_modules/.pnpm-store || echo skipping pnpm install",
     "build": "vitepress build docs && cp CNAME ./docs/.vitepress/dist",
     "serve": "vitepress serve docs",
     "deploy": "npx gh-pages -d ./docs/.vitepress/dist",
