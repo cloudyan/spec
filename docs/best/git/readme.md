@@ -223,10 +223,6 @@ Git tag 就是通过语义化的名称来给仓库标注一个个具体的节点
 
 `git tag -a v1.2.3 -m "发布经销商管理模块"`
 
-## 配套工具
-
-- [commitlint-config-ali](https://www.npmjs.com/package/commitlint-config-ali)：本规范配套的 [commitlint](https://github.com/conventional-changelog/commitlint) 配置包，可用于校验 commit message。
-
 ## 参考资料
 
 1. [AngularJS 代码贡献指南][angular-contributing]

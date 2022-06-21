@@ -20,7 +20,7 @@
   },
   "scripts": {
     "dev": "vitepress dev docs",
-    "build": "vitepress build docs",
+    "build": "vitepress build docs && cp CNAME ./docs/.vitepress/dist",
     "serve": "vitepress serve docs",
     "deploy": "npx gh-pages -d ./docs/.vitepress/dist",
     "preinstall": "npx only-allow pnpm",

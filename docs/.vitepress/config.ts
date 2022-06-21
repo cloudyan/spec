@@ -3,6 +3,7 @@ import sidebar from './sidebar'
 // import { version } from '../package.json'
 
 export default defineConfig({
+  // base: '/spec',
   // lang: 'en-US',
   title: 'SPEC',
   description: '这是一份编码规范',

@@ -1,6 +1,6 @@
 const guide = [
   {
-    text: '指引',
+    text: '指南',
     collapsible: true,
     items: [{ text: '简介', link: '/guide/' }],
   },

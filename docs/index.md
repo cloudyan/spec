@@ -6,7 +6,7 @@ titleTemplate: 这是一份编码规范
 
 hero:
   name: SPEC
-  text: 这是一份编码规范
+  text: 这是一份参考规范
   tagline: 坚持编码规范所带来的收益能够远远高于它的成本。
   actions:
     - theme: brand
