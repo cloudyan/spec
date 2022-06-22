@@ -48,7 +48,7 @@ function foo() {
 // best - 最佳正例（多个正例中最好的实现）
 ```
 
-参考：
+参考:
 
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 - [Code Guide by @mdo](http://codeguide.co)
@@ -58,3 +58,10 @@ function foo() {
 - [naming-cheatsheet](https://github.com/kettanaito/naming-cheatsheet.git)
 - [O2 前端规范文档](https://github.com/o2team/guide)
 - [阿里前端开发规范](https://w3ctim.com/post/1d821dd8.html)
+- [Baidu 前端规范](https://github.com/ecomfe/spec)
+- [Qunar 前端规范](https://github.com/doyoe/html-css-guide)
+- [常用的 HTML 头部标签](https://github.com/yisibl/blog/issues/1)
+- [Google Style Guide](http://docs.kissyui.com/1.4/docs/html/tutorials/style-guide/google-js-style.html)
+- [Amazeui Style Guide](http://amazeui.org/getting-started/)
+- [CSS Guidelines](http://cssguidelin.es/)
+- [前端开发规范手册](https://github.com/0xashu/Guide.git)

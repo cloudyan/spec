@@ -467,3 +467,4 @@ class 用于标识高度可复用组件，因此应该排在首位。id 用于�
 - [Code Guide by @mdo](http://codeguide.co)
 - [Google HTML/CSS Style Guide](https://google.github.io/styleguide/htmlcssguide.html)
 - [Code Guide by @AlloyTeam-materliu](http://materliu.github.io/code-guide/)
+- [常用的 HTML 头部标签](https://github.com/yisibl/blog/issues/1)
